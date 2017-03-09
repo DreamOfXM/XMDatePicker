@@ -1,5 +1,5 @@
 # XMDatePicker
-This is a datePicker which you can set freely(这个时间选择器你可以自由定义).
+This is a datePicker which you can set as what you want(这个时间选择器你可以自由定义).
 ## 1 How to use
 #### 1.1 You can set datepicker's label color 
 

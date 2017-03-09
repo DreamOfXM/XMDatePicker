@@ -76,8 +76,7 @@ self.datePicker.pickerViewType = PickerViewTypeStaticSperator;
  self.datePicker.miniteUnit = @"分";
 ```
 #### picture 1
-![image]https://github.com/DreamOfXM/XMDatePicker/blob/f03c779a3ef0ea15b8ca22abcddc3b329d45397d/gif/1.gif
-
+![image](https://github.com/DreamOfXM/XMDatePicker/blob/f03c779a3ef0ea15b8ca22abcddc3b329d45397d/gif/1.gif)
 #### picture 2
 
 ##2 usage 

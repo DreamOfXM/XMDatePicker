@@ -1,5 +1,5 @@
 # XMDatePicker
-This is a datePicker which you can custom set(这个时间选择器你可以自由定义).
+This is a datePicker which you can set freely(这个时间选择器你可以自由定义).
 ## 1 How to use
 #### 1.1 You can set datepicker's label color 
 
@@ -15,11 +15,11 @@ self.datePicker.selectedTextColor = [UIColor blueColor];
 self.datePicker.otherTextFont = [UIFont systemFontOfSize:15];
 self.datePicker.otherTextColor = [UIColor grayColor];
 ```
-#### 1.3 You can set seperate line color
+#### 1.3 You can set separator's color
 ```
 self.datePicker.seperateLineColor = [UIColor redColor];
 ```
-#### 1.4 You can select datePicker seperate line type. There are three types by default.   
+#### 1.4 You can select datePicker separator's type. There are three types by default.   
 
 //Default
 ```

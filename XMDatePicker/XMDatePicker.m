@@ -558,7 +558,7 @@
             if (![name isEqualToString:@"_referencingCells"]) continue;
     
             NSMutableArray * cells = object_getIvar(tableView, property);
-            int count = cells.count;
+            int count = (int)cells.count;
             if(!count) continue;
             
             UIColor *textColor = nil;
@@ -654,15 +654,15 @@
     NSDateComponents *components = [calendar components:NSCalendarUnitYear |NSCalendarUnitMonth |NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:[NSDate date]];
 //    NSCalendarUnit unit
     if (self.dateShowType == DateShowingTypeYMDHM) {
-        return [NSString stringWithFormat:@"%ld-%.2ld-%.2ld %.2ld:%.2ld",components.year,components.month,components.day,components.hour,components.minute];
+        return [NSString stringWithFormat:@"%d-%.2d-%.2d %.2d:%.2d",(int)components.year,(int)components.month,(int)components.day,(int)(int)components.hour,(int)components.minute];
     }else if (self.dateShowType == DateShowingTypeYMDH) {
-        return [NSString stringWithFormat:@"%ld-%.2ld-%.2ld %.2ld",components.year,components.month,components.day,components.hour];
+        return [NSString stringWithFormat:@"%d-%.2d-%.2d %.2d",(int)components.year,(int)components.month,(int)components.day,(int)components.hour];
     }else if(self.dateShowType == DateShowingTypeYMD) {
-          return [NSString stringWithFormat:@"%ld-%.2ld-%.2ld",components.year,components.month,components.day];
+          return [NSString stringWithFormat:@"%d-%.2d-%.2d",(int)components.year,(int)components.month,(int)components.day];
     }else if (self.dateShowType == DateShowingTypeMDHM) {
-        return [NSString stringWithFormat:@"%.2ld-%.2ld %.2ld:%.2ld",components.month,components.day,components.hour,components.minute];
+        return [NSString stringWithFormat:@"%.2d-%.2d %.2d:%.2d",(int)components.month,(int)components.day,(int)components.hour,(int)components.minute];
     }else if (self.dateShowType == DateShowingTypeDHM) {
-        return [NSString stringWithFormat:@"%.2ld %.2ld:%.2ld",components.day,components.hour,components.minute];
+        return [NSString stringWithFormat:@"%.2d %.2d:%.2d",(int)components.day,(int)components.hour,(int)components.minute];
     }
     return @"";
 }
@@ -710,17 +710,17 @@
 
 - (void)setMonthUnit:(NSString *)monthUnit {
     _monthUnit = monthUnit;
-    self.months;
+    [self months];
 }
 
 - (void)setHourUnit:(NSString *)hourUnit {
     _hourUnit = hourUnit;
-    self.hours;
+    [self hours];
 }
 
 - (void)setMiniteUnit:(NSString *)miniteUnit {
     _miniteUnit = miniteUnit;
-    self.minites;
+    [self minites];
 }
 
 - (void)setDateLabel:(UILabel *)dateLabel {

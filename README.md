@@ -100,7 +100,7 @@ If you need not click the confirmation button transmit date strings, you can imp
 有两个代理方法，分别是`- (void)pickerView:(XMDatePicker *)pickerView didSelectedDateString:(NSString *)dateString`和`- (void)pickerView:(XMDatePicker *)pickerView didClickOkButtonWithDateString:(NSString *)dateString`，如果你不需要点击“确认”按钮去最终确定所选择的日期，而是滑动转轮的同时更新日期，那么你可以实现第一个代理方法，否则就实现第二个代理方法
 
 ##  3 Issue
-If you find a bug, please tell me.My E-mail address is 1179102890@qq.com. If you have a good idea ,you can discuss with me.  
+If you find a bug, please tell me.My E-mail address is 1179102890@qq.com. If you have a good idea ,you can discuss with me. 
 
-
-
+最后，我在[《XMDatePicker的写作思路》](http://www.jianshu.com/p/58a902853479)中简要讲了一下处理分割线的问题，有什么问题希望大家批评指正！
+***

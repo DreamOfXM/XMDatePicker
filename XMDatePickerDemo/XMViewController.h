@@ -11,5 +11,5 @@
 @interface XMViewController : UIViewController
 @property(nonatomic, strong)UILabel *titleLabel;
 @property (nonatomic, strong)XMDatePicker *datePicker;
-
+@property(nonatomic, strong)UILabel *dateLabel;
 @end

@@ -11,6 +11,8 @@
 #import "UIView+XMFrame.h"
 
 @interface XMViewController ()<XMDatePickerDelegate>
+
+
 @end
 
 @implementation XMViewController
@@ -20,6 +22,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [super viewDidLoad];
     [self.view addSubview:self.titleLabel];
+    [self.view addSubview:self.dateLabel];
 }
 
 #pragma mark - Delegates
@@ -71,6 +74,21 @@
     }
     return _titleLabel;
 }
+
+- (UILabel *)dateLabel {
+    if (!_dateLabel) {
+        _dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.height/2 - 100, self.view.width, 50)];
+        _dateLabel.textColor = [UIColor blackColor];
+        _dateLabel.textAlignment = NSTextAlignmentCenter;
+        _dateLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        _dateLabel.numberOfLines = 0;
+        _dateLabel.font = [UIFont systemFontOfSize:28];
+    }
+    return _dateLabel;
+    
+}
+
+
 
 
 @end

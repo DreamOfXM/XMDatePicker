@@ -35,10 +35,16 @@
     self.datePicker.otherTextColor = [UIColor grayColor];
     
     self.datePicker.selectedLabelColor = [UIColor yellowColor];
-    
     self.datePicker.otherLabelColor = [UIColor blueColor];
     
 }
+
+#pragma mark
+- (void)pickerView:(XMDatePicker *)pickerView didSelectedDateString:(NSString *)dateString {
+    self.dateLabel.text = dateString;
+}
+
+
 
 //#pragma mark - Delegates
 //- (void)pickerView:(XMDatePicker *)pickerView didSelectedDateString:(NSString *)dateString {

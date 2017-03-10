@@ -536,25 +536,21 @@
         }
     }
    
-    
-    int cellNum = (int)self.picker.subviews[0].subviews[component].subviews.count;
-    
     UIFont *font = nil;
     font = self.otherTextFont? self.otherTextFont:[UIFont systemFontOfSize:16];
     textWidth = [self p_widthOfText:labelTex font:font];
     
-    for (int index = 0; index<cellNum; index++) {
-        
+    int pickerTableViewNum = (int)self.picker.subviews[0].subviews[component].subviews.count;
+    
+    for (int index = 0; index<pickerTableViewNum; index++) {
         UIView *tableView = self.picker.subviews[0].subviews[component].subviews[index].subviews[0];
 //        NSLog(@"sub ========== %@",self.picker.subviews[0].subviews[component].subviews[1].subviews[0]);
         unsigned int count = 0;
         Ivar *array = class_copyIvarList([tableView class], &count);
         for (int i = 0; i<count; i++) {
-    
             Ivar property = array[i];
             const char *string = ivar_getName(property);
             NSString *name = [[NSString alloc]initWithUTF8String:string];
-            
             if (![name isEqualToString:@"_referencingCells"]) continue;
     
             NSMutableArray * cells = object_getIvar(tableView, property);
@@ -564,7 +560,7 @@
             UIColor *textColor = nil;
             UIColor *labelBackgroundColor = nil;
             for (int i = 0; i< count; i++) {
-                if (index !=cellNum -1) {
+                if (index !=pickerTableViewNum -1) {
                     font = self.otherTextFont? self.otherTextFont:[UIFont systemFontOfSize:16];
                     textColor = self.otherTextColor ? self.otherTextColor : [UIColor grayColor];
                     labelBackgroundColor = self.otherLabelColor ?self.otherLabelColor : [UIColor clearColor];
@@ -583,13 +579,13 @@
 //                NSLog(@"textLabelSubviews ======== %@",textLabel.subviews);
 //                NSLog(@"textLabel frame ====== %@",NSStringFromCGRect([textLabel frame]));
                 
-                if (index != cellNum - 1)
+                if (index != pickerTableViewNum - 1)
                     continue;
                 
                 if (textLabel.subviews.count>=1)
                     continue;
                 
-                //dynamic sperate line
+                //dynamic seperator
                 if (self.pickerViewType == PickerViewTypeDynamicSperator) {
                     UIView *line = [[UIView alloc]initWithFrame:CGRectMake((textLabel.frame.size.width - textWidth)/2, textLabel.frame.size.height - 1, textWidth, 1)];
                     line.backgroundColor = self.seperateLineColor;
@@ -600,7 +596,7 @@
         }
     }
     
-    //static sperate line
+    //static sperator
     if (self.pickerViewType != PickerViewTypeStaticSperator) return;
     CGFloat spacing = 4.75f;
     NSInteger numberOfComponent = [self numberOfComponents];

@@ -89,7 +89,7 @@ self.datePicker.pickerViewType = PickerViewTypeStaticSperator;
 
 ####2 improt the main file  `#import "XMDatePicker.h"`
 #### 3 Method excute 
-######3.1 Excute `- (void)showPickerView` 
+###### 3.1 Excute `- (void)showPickerView` 
 (调用方法`- (void)showPickerView`展示pickerView) 
 
 #####3.2 Implement protocol method 
@@ -99,7 +99,7 @@ If you need not click the confirmation button transmit date strings, you can imp
 ***
 有两个代理方法，分别是`- (void)pickerView:(XMDatePicker *)pickerView didSelectedDateString:(NSString *)dateString`和`- (void)pickerView:(XMDatePicker *)pickerView didClickOkButtonWithDateString:(NSString *)dateString`，如果你不需要点击“确认”按钮去最终确定所选择的日期，而是滑动转轮的同时更新日期，那么你可以实现第一个代理方法，否则就实现第二个代理方法
 
-####  4 Issue
+##  3 Issue
 If you find a bug, please tell me.My E-mail address is 1179102890@qq.com. If you have a good idea ,you can discuss with me.  
 
 

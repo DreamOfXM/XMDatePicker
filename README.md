@@ -76,9 +76,11 @@ self.datePicker.pickerViewType = PickerViewTypeStaticSperator;
  self.datePicker.miniteUnit = @"分";
 ```
 #### picture 1
-![image](https://github.com/DreamOfXM/XMDatePicker/blob/f03c779a3ef0ea15b8ca22abcddc3b329d45397d/gif/1.gif)
+![image](https://github.com/DreamOfXM/XMDatePicker/blob/master/gif/1.gif)
 #### picture 2
-![image](https://github.com/DreamOfXM/XMDatePicker/blob/97b6164c396f46d8541df2d612ef052984a275d5/gif/2.gif)
+![image](https://github.com/DreamOfXM/XMDatePicker/blob/master/gif/2.gif)
+#### picture 3
+![image](https://github.com/DreamOfXM/XMDatePicker/blob/master/gif/3.gif)
 ##2 usage 
 ###2.1 cocoaPods
 `pod XMDatePicker`

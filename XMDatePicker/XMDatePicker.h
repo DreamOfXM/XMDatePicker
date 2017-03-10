@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger,DateShowingType) {
 @protocol XMDatePickerDelegate <NSObject>
 @optional
 
-- (NSInteger)numberOfComponentsInPickerView:(XMDatePicker *)pickerView;
+//- (NSInteger)numberOfComponentsInPickerView:(XMDatePicker *)pickerView;
 //- (NSString *)dateStringFromPickerView:(XMDatePicker *)pickerView;
 - (void)pickerView:(XMDatePicker *)pickerView didSelectedDateString:(NSString *)dateString;
 - (void)pickerView:(XMDatePicker *)pickerView didClickOkButtonWithDateString:(NSString *)dateString;

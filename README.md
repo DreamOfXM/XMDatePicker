@@ -16,9 +16,12 @@ self.datePicker.selectedTextColor = [UIColor blueColor];
 self.datePicker.otherTextFont = [UIFont systemFontOfSize:15];
 self.datePicker.otherTextColor = [UIColor grayColor];
 ```
-#### 1.3 You can set separator's color
+#### 1.3 You can set separator's color and width 
 ```objc
+// color
 self.datePicker.seperateLineColor = [UIColor redColor];
+//width
+self.datePicker.seperatorWidth = 60;
 ```
 #### 1.4 You can select datePicker separator's type. There are three types by default.   
 

@@ -67,7 +67,6 @@
         [self p_commonInit];
         [self addSubview:self.maskView];
         [self p_addPickerBackgroundView];
-
     }
     return self;
 }
@@ -539,9 +538,9 @@
     UIFont *font = nil;
     font = self.otherTextFont? self.otherTextFont:[UIFont systemFontOfSize:16];
     textWidth = [self p_widthOfText:labelTex font:font];
-    
+    CGFloat sepepatorWidth = (textWidth<self.seperatorWidth) ? self.seperatorWidth : textWidth;
     int pickerTableViewNum = (int)self.picker.subviews[0].subviews[component].subviews.count;
-    
+
     for (int index = 0; index<pickerTableViewNum; index++) {
         UIView *tableView = self.picker.subviews[0].subviews[component].subviews[index].subviews[0];
 //        NSLog(@"sub ========== %@",self.picker.subviews[0].subviews[component].subviews[1].subviews[0]);
@@ -587,7 +586,7 @@
                 
                 //dynamic seperator
                 if (self.pickerViewType == PickerViewTypeDynamicSperator) {
-                    UIView *line = [[UIView alloc]initWithFrame:CGRectMake((textLabel.frame.size.width - textWidth)/2, textLabel.frame.size.height - 1, textWidth, 1)];
+                    UIView *line = [[UIView alloc]initWithFrame:CGRectMake((textLabel.frame.size.width - sepepatorWidth)/2, textLabel.frame.size.height - 1, sepepatorWidth, 1)];
                     line.backgroundColor = self.seperateLineColor;
                     [textLabel addSubview:line];
                 }
@@ -602,14 +601,14 @@
     NSInteger numberOfComponent = [self numberOfComponents];
     CGFloat margin = (self.width - self.componentWidth * numberOfComponent - (numberOfComponent - 1)*spacing)/2;
     CGFloat textLabelOffSet = 9.0f;
-    CGFloat textOffSet = (self.componentWidth - textLabelOffSet - textWidth)/2;
+    CGFloat textOffSet = (self.componentWidth - textLabelOffSet - sepepatorWidth)/2;
     UIView *view =  self.picker.subviews[0].subviews[component].subviews[2];
     
     if (view.subviews.count>=3) {
     }else{
         CGFloat x = (spacing+self.componentWidth)*component + margin + textLabelOffSet+textOffSet;
-        UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(x, view.height - 1, textWidth, 1)];
-        UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(x, 0, textWidth, 1)];
+        UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(x, view.height - 1, sepepatorWidth, 1)];
+        UIView *lineView2 = [[UIView alloc]initWithFrame:CGRectMake(x, 0, sepepatorWidth, 1)];
         lineView1.backgroundColor = [UIColor blueColor];
         lineView2.backgroundColor = [UIColor blueColor];
         [view addSubview:lineView1];

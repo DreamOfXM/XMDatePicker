@@ -37,6 +37,9 @@
     self.datePicker.selectedLabelColor = [UIColor yellowColor];
     self.datePicker.otherLabelColor = [UIColor blueColor];
     
+    //custom seperator width
+    self.datePicker.seperatorWidth = 60;
+    
 }
 
 #pragma mark

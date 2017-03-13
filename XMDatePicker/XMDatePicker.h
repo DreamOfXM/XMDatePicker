@@ -53,6 +53,8 @@ typedef NS_ENUM(NSInteger,DateShowingType) {
 /** sperate line color 分割线颜色*/
 @property(nonatomic, strong)UIColor *seperateLineColor;
 
+@property(nonatomic, assign)CGFloat seperatorWidth;
+
 /** start time.It is 1970 default if is not setted*/
 @property(nonatomic, assign)int fromYear;
 

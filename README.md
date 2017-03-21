@@ -84,6 +84,9 @@ self.datePicker.pickerViewType = PickerViewTypeStaticSperator;
 ![image](https://github.com/DreamOfXM/XMDatePicker/blob/master/gif/2.gif)
 #### picture 3
 ![image](https://github.com/DreamOfXM/XMDatePicker/blob/master/gif/3.gif)
+
+
+
 ##2 usage 
 ###2.1 cocoaPods
 `pod XMDatePicker`

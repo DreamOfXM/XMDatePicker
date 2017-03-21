@@ -32,6 +32,7 @@
     NSInteger _dayIndex;
     NSInteger _hourIndex;
     NSInteger _minteIndex;
+    NSInteger _secondIndex;
 }
 //@property(nonatomic, strong)UIViewController *controller;
 
@@ -451,6 +452,7 @@
     self.currentDay =  (int)components.day;
     self.currentHour = (int)components.hour;
     self.currentMinite = (int)components.minute;
+    self.currentSecond = 0;
 //    self.bottomMargin = 20;
 }
 
@@ -459,7 +461,7 @@
     
     [self p_initDateData];
     
-    //1 show all colums(展示 年、月、日、时、分)
+    //1 yyyy-MM-dd HH:mm(展示 年、月、日、时、分)
     if (self.dateShowType == DateShowingTypeYMDHM) {
         [self.picker selectRow:_yearIndex inComponent:0 animated:NO];
         [self.picker selectRow:_monthIndex inComponent:1 animated:NO];
@@ -493,6 +495,14 @@
         [self.picker selectRow:_dayIndex inComponent:0 animated:NO];
         [self.picker selectRow:_hourIndex inComponent:1 animated:NO];
         [self.picker selectRow:_minteIndex inComponent:2 animated:NO];
+        //6 yyyy-MM-dd HH:mm:ss
+    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
+        [self.picker selectRow:_yearIndex inComponent:0 animated:NO];
+        [self.picker selectRow:_monthIndex inComponent:1 animated:NO];
+        [self.picker selectRow:_dayIndex inComponent:2 animated:NO];
+        [self.picker selectRow:_hourIndex inComponent:3 animated:NO];
+        [self.picker selectRow:_minteIndex inComponent:4 animated:NO];
+        [self.picker selectRow:_secondIndex inComponent:5 animated:NO];
     }
 }
 
@@ -502,6 +512,7 @@
     _dayIndex = [[self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear] indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentDay,self.dayUnit?self.dayUnit:@""]];
     _hourIndex = [self.hours indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentHour,self.hourUnit?self.hourUnit:@""]];
     _minteIndex = [self.minites indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentMinite,self.miniteUnit?self.miniteUnit:@""]];
+    _secondIndex = [self.seconds indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentSecond,self.secondUnit?self.secondUnit:@""]];
     
 }
 
@@ -510,9 +521,16 @@
     if (array.count) {
         [array removeAllObjects];
     }
-    for (int i = 1; i<=count; i++) {
-        [array addObject:[NSString stringWithFormat:@"%.2d%@",i,unit?unit:@""]];
+    if (count == 12) {//月
+        for (int i = 1; i<=count; i++) {
+            [array addObject:[NSString stringWithFormat:@"%.2d%@",i,unit?unit:@""]];
+        }
+    }else {
+        for (int i = 0; i<=count; i++) {
+            [array addObject:[NSString stringWithFormat:@"%.2d%@",i,unit?unit:@""]];
+        }
     }
+    
     return array;
 }
 
@@ -674,6 +692,8 @@
         return 3;
     }else if (self.dateShowType == DateShowingTypeYMDHM) {
         return 5;
+    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
+        return 6;
     }
     return 5;
 }

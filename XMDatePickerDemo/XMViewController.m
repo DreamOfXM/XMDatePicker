@@ -52,6 +52,7 @@
         _datePicker.dayUnit = @"日";
         _datePicker.hourUnit = @"时";
         _datePicker.miniteUnit = @"分";
+        _datePicker.secondUnit = @"秒";
 //        _datePicker.dateLabel.hidden = YES;
 //        _datePicker.pickerViewType = PickerViewTypeStaticSperator;
 //        _datePicker.dateShowType = DateShowingTypeMDHM;

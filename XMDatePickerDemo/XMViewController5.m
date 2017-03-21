@@ -21,6 +21,7 @@
 //    self.datePicker.dateShowType = DateShowingTypeDHM;//DateShowingTypeYMDHMS
     
     //yyy-MM-dd HH:mm:ss
+    self.datePicker.componentWidth = 50;
     self.datePicker.dateShowType = DateShowingTypeYMDHMS;
 }
 

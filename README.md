@@ -78,6 +78,7 @@ self.datePicker.pickerViewType = PickerViewTypeStaticSperator;
  self.datePicker.hourUnit = @"时";
  self.datePicker.miniteUnit = @"分";
 ```
+
 #### picture 1
 ![image](https://github.com/DreamOfXM/XMDatePicker/blob/master/gif/1.gif)
 #### picture 2
@@ -85,20 +86,19 @@ self.datePicker.pickerViewType = PickerViewTypeStaticSperator;
 #### picture 3
 ![image](https://github.com/DreamOfXM/XMDatePicker/blob/master/gif/3.gif)
 
-
-
-##2 usage 
-###2.1 cocoaPods
+#### usage 
+### 2.1 cocoaPods
 `pod XMDatePicker`
-###2.2 Manual import 
-####1 Drag all files in the `XMDatePicker` folder to your progect 
+### 2.2 Manual import
 
-####2 improt the main file  `#import "XMDatePicker.h"`
+#### 1 Drag all files in the `XMDatePicker` folder to your progect 
+
+#### 2 improt the main file  `#import "XMDatePicker.h"`
 #### 3 Method excute 
 ###### 3.1 Excute `- (void)showPickerView` 
 (调用方法`- (void)showPickerView`展示pickerView) 
 
-#####3.2 Implement protocol method 
+##### 3.2 Implement protocol method 
 There are two protocol methods Which are `- (void)pickerView:(XMDatePicker *)pickerView didSelectedDateString:(NSString *)dateString` and `- (void)pickerView:(XMDatePicker *)pickerView didClickOkButtonWithDateString:(NSString *)dateString`.
 
 If you need not click the confirmation button transmit date strings, you can implement the first method, otherwise the second.

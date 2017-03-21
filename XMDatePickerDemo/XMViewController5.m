@@ -17,7 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleLabel.text = @"click me!";
-    self.datePicker.dateShowType = DateShowingTypeDHM;
+    //dd HH:mm:ss
+//    self.datePicker.dateShowType = DateShowingTypeDHM;//DateShowingTypeYMDHMS
+    
+    //yyy-MM-dd HH:mm:ss
+    self.datePicker.dateShowType = DateShowingTypeYMDHMS;
 }
 
 @end

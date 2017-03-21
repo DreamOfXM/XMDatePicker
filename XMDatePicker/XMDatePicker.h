@@ -16,6 +16,7 @@ typedef enum{
 
 typedef NS_ENUM(NSInteger,DateShowingType) {
     DateShowingTypeYMDHM = 1,//year、month、day、hour and minite
+    DateShowingTypeYMDHMS,//year、month、day、hour and minite、second
     DateShowingTypeYMDH, //year、month、day and hour
     DateShowingTypeYMD,  //year、month、day
     DateShowingTypeMDHM, //month、day、hour and minite
@@ -79,6 +80,7 @@ typedef NS_ENUM(NSInteger,DateShowingType) {
 @property(nonatomic, copy)NSString *dayUnit;
 @property(nonatomic, copy)NSString *hourUnit;
 @property(nonatomic, copy)NSString *miniteUnit;
+@property(nonatomic, copy)NSString *secondUnit;
 
 @property(nonatomic, assign)CGFloat topMargin;
 @property(nonatomic, assign)CGFloat bottomMargin;

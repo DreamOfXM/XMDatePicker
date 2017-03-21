@@ -14,6 +14,7 @@
 #define MonthsOfEachYear 12 //每年12个月
 #define HoursOfEachDay 24 //每天24小时
 #define MinitesOfEachHour 60 //每小时60分
+#define SecondsOfEachMinite 60//每小时60秒
 
 #define IsThirtyOneDays(month) \
 (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
@@ -47,12 +48,14 @@
 @property(nonatomic, strong)NSMutableArray *days;
 @property(nonatomic, strong)NSMutableArray *hours;
 @property(nonatomic, strong)NSMutableArray *minites;
+@property (nonatomic, strong)NSMutableArray *seconds;
 
 @property(nonatomic, assign)int currentYear;
 @property(nonatomic, assign)int currentMonth;
 @property(nonatomic, assign)int currentDay;
 @property(nonatomic, assign)int currentHour;
 @property(nonatomic, assign)int currentMinite;
+@property (nonatomic, assign)int currentSecond;
 
 @property(nonatomic, copy)NSString *dateString;
 
@@ -124,7 +127,6 @@
         }else if (component == 4) {//minite
             return self.minites.count;
         }
-        
         //2 show year-month-day hour
     }else if (self.dateShowType == DateShowingTypeYMDH) {
         if (component == 0) {//year
@@ -165,6 +167,20 @@
             return self.hours.count;
         }else if (component == 2) {//mintes
             return self.minites.count;
+        }
+    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
+        if (component == 0) {//year
+            return self.years.count;
+        }else if (component == 1) {//month
+            return self.months.count;
+        }else if (component == 2) {//day
+            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
+        }else if (component == 3) {//hour
+            return self.hours.count;
+        }else if (component == 4) {//minite
+            return self.minites.count;
+        }else if (component == 5) {
+            return self.seconds.count;
         }
     }
     return 5;
@@ -233,6 +249,20 @@
             return self.hours[row];
         }else if (component == 2) {//mintes
             return self.minites[row];
+        }
+    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
+        if (component == 0) {//year
+            return self.years[row];
+        }else if (component == 1) {//month
+            return self.months[row];
+        }else if (component == 2) {//day
+            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
+        }else if (component == 3) {//hour
+            return self.hours[row];
+        }else if (component == 4) {//minite
+            return self.minites[row];
+        }else if (component == 5) {
+            return self.seconds[row];
         }
     }
     
@@ -319,6 +349,26 @@
              self.currentMinite = [self.minites[row] intValue];
         }
         dateString = [NSString stringWithFormat:@"%.2d %.2d:%.2d",self.currentDay,self.currentHour,self.currentMinite];
+        //5 YYYY-mm-DD HH:mm:ss
+    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
+        if (component == 0) {//year
+            [self p_updateDateAcordingToYearAtRow:row inComponent:component];
+        }else if (component == 1) {//month
+            //更新日期
+            self.currentMonth = [self.months[row] intValue];
+            [pickerView reloadComponent:component+1];
+            NSInteger selectedRow = [pickerView selectedRowInComponent:component+1];
+            self.currentDay = [self.days[selectedRow] intValue];
+        }else if (component == 2) {//day
+            self.currentDay = [self.days[row] intValue];
+        }else if (component == 3) {//hour
+            self.currentHour = [self.hours[row] intValue];
+        }else if (component == 4) {//minite
+            self.currentMinite = [self.minites[row] intValue];
+        }else if (component == 5) {
+            self.currentSecond = [self.seconds[row] intValue];
+        }
+        dateString = [NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d:%.2d:%.2d",self.currentYear,self.currentMonth,self.currentDay,self.currentHour,self.currentMinite,self.currentSecond];
     }
 
     self.dateLabel.text = dateString;
@@ -408,7 +458,6 @@
 - (void)p_scrollToDefaultLocation {
     
     [self p_initDateData];
-    
     
     //1 show all colums(展示 年、月、日、时、分)
     if (self.dateShowType == DateShowingTypeYMDHM) {
@@ -802,6 +851,13 @@
         _minites = [[NSMutableArray alloc]init];
     }
     return [self p_getCommonArray:_minites elementCount:MinitesOfEachHour uint:self.miniteUnit];
+}
+
+- (NSMutableArray *)seconds {
+    if (!_seconds) {
+        _seconds = [[NSMutableArray alloc]init];
+    }
+    return [self p_getCommonArray:_seconds elementCount:SecondsOfEachMinite uint:self.secondUnit];
 }
 
 

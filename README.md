@@ -43,6 +43,10 @@ self.datePicker.pickerViewType = PickerViewTypeStaticSperator;
 ```objc
  self.datePicker.dateShowType = DateShowingTypeYMDHM;
  ```
+ //yyyy-MM-dd HH:mm:ss
+```objc
+ self.datePicker.dateShowType = DateShowingTypeYMDHMS;
+ ```
  //yyyy-MM-dd HH
  
  ```objc
@@ -77,6 +81,7 @@ self.datePicker.pickerViewType = PickerViewTypeStaticSperator;
  self.datePicker.dayUnit = @"日";
  self.datePicker.hourUnit = @"时";
  self.datePicker.miniteUnit = @"分";
+ self.datePicker.secondUnit = @"秒"
 ```
 
 #### picture 1

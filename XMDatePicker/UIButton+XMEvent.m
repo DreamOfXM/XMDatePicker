@@ -14,7 +14,7 @@
 static char *key = "buttonKey";
 
 - (void)clickEvent:(ClickBlock)eventBlock {
-    objc_setAssociatedObject(self,key,eventBlock, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self,key,eventBlock, OBJC_ASSOCIATION_COPY);
     [self addTarget:self action:@selector(p_clickButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 

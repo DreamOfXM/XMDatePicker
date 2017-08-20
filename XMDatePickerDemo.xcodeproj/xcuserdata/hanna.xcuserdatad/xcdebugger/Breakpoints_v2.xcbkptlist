@@ -107,6 +107,53 @@
             endingLineNumber = "105"
             landmarkName = "-dismissPickerView"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__33-[XMDatePicker dismissPickerView]_block_invoke.37"
+                  moduleName = "XMDatePickerDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hanna/Desktop/%E5%B7%A5%E4%BD%9C/%E5%B9%B3%E6%97%B6%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/github/XMDatePicker/XMDatePicker/XMDatePicker.m"
+                  timestampString = "524893210.926084"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "179">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.40"
+                  moduleName = "XMDatePickerDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hanna/Desktop/%E5%B7%A5%E4%BD%9C/%E5%B9%B3%E6%97%B6%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/github/XMDatePicker/XMDatePicker/XMDatePicker.m"
+                  timestampString = "524893210.927702"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "51">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.41"
+                  moduleName = "XMDatePickerDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hanna/Desktop/%E5%B7%A5%E4%BD%9C/%E5%B9%B3%E6%97%B6%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/github/XMDatePicker/XMDatePicker/XMDatePicker.m"
+                  timestampString = "524893210.929164"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

@@ -5,21 +5,6 @@
 //  Created by guoran on 2017/3/6.
 //  Copyright © 2017年 hanna. All rights reserved.
 //
-/**
- * 每月的天数是最特殊的，俗话说 1 3 5 7 8 10 12(腊)， 31天总不差
- *  4 6 9 11，都是30天
- *  2月最特殊，分为闰年和平年，所谓闰年大家百度即可，闰年的2月份是29天，平年28天 相信只要有小学文凭的都知道，怎么算就不多说了
- */
-
-#define MonthsOfEachYear 12 //每年12个月
-#define HoursOfEachDay 24 //每天24小时
-#define MinitesOfEachHour 60 //每小时60分
-#define SecondsOfEachMinite 60//每小时60秒
-
-#define IsThirtyOneDays(month) \
-(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
-
-#define IsThirtyDays(month) (month == 4 || month == 6 ||month == 9 || month == 11)
 
 #import "XMDatePicker.h"
 #import <objc/runtime.h>

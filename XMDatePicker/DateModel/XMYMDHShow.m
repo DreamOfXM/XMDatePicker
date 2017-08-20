@@ -81,8 +81,8 @@
 
 - (BOOL)p_isVaildOfSelectedTimeWithDateString:(NSString **)dateString {
     NSDateFormatter *formate = [[NSDateFormatter alloc]init];
-    formate.dateFormat = @"yyyy:MM:dd";
-    NSDate *date = [formate dateFromString:[NSString stringWithFormat:@"%.4d:%.2d:%.2d",
+    formate.dateFormat = @"yyyy-MM-dd";
+    NSDate *date = [formate dateFromString:[NSString stringWithFormat:@"%.4d-%.2d-%.2d",
                                             self.currentYear,
                                             self.currentMonth,
                                             self.currentDay]];

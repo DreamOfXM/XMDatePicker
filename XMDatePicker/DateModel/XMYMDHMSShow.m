@@ -88,12 +88,13 @@
 
 - (BOOL)p_isVaildOfSelectedTimeWithDateString:(NSString **)dateString {
     NSDateFormatter *formate = [[NSDateFormatter alloc]init];
-    formate.dateFormat = @"yyyy:MM:dd HH:mm:ss";
-    NSDate *date = [formate dateFromString:[NSString stringWithFormat:@"%.4d:%.2d:%.2d %.2d:%.2d:%.2d",
+    formate.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *date = [formate dateFromString:[NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d:%.2d:%.2d",
                                             self.currentYear,
                                             self.currentMonth,
                                             self.currentDay,
                                             self.currentHour,
+                                            self.currentMinite,
                                             self.currentMinite]];
     if ([date timeIntervalSinceDate:self.maximumDate]>0) {//大于最大时间
         if (self.delegate && [self.delegate respondsToSelector:@selector(selectedRow:inComponent:)]) {

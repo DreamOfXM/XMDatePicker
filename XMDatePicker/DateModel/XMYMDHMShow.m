@@ -125,7 +125,7 @@
         }
     }else if ([date timeIntervalSinceDate:self.minimumDate]<0) {//小于最小时间
         if (self.delegate && [self.delegate respondsToSelector:@selector(selectedRow:inComponent:)]) {
-            NSDateComponents *components = [NSCalendar componetsFromDate:self.maximumDate];
+            NSDateComponents *components = [NSCalendar componetsFromDate:self.minimumDate];
             NSInteger yearIndex = [self yearIndexOfYear:(int)components.year];
             NSInteger monthIndex = [self monthIndxOfMonth:1];
             NSInteger dayIndex = [self dayIndexOfDay:1];

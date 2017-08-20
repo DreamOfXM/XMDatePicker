@@ -108,7 +108,7 @@
 		B5F6CB861F4964FF00181110 /* UIView+XMFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XMFrame.m"; sourceTree = "<group>"; };
 		B5F6CB871F4964FF00181110 /* XMPickerTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPickerTopBar.h; sourceTree = "<group>"; };
 		B5F6CB881F4964FF00181110 /* XMPickerTopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPickerTopBar.m; sourceTree = "<group>"; };
-		B5F6CB8C1F49651A00181110 /* XMDateEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XMDateEnum.h; path = ../../XMDateEnum.h; sourceTree = "<group>"; };
+		B5F6CB8C1F49651A00181110 /* XMDateEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XMDateEnum.h; path = ../XMDateEnum.h; sourceTree = "<group>"; };
 		B5F6CB8D1F49654100181110 /* XMDateEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMDateEnum.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

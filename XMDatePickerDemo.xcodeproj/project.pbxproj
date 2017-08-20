@@ -25,6 +25,13 @@
 		2EBA6BA91E715A2A00FAD879 /* XMViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA6BA11E715A2A00FAD879 /* XMViewController3.m */; };
 		2EBA6BAA1E715A2A00FAD879 /* XMViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA6BA31E715A2A00FAD879 /* XMViewController4.m */; };
 		2EBA6BAB1E715A2A00FAD879 /* XMViewController5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA6BA51E715A2A00FAD879 /* XMViewController5.m */; };
+		B5F6CB6A1F4813AE00181110 /* XMDateShowingType.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB691F4813AE00181110 /* XMDateShowingType.m */; };
+		B5F6CB6D1F48142E00181110 /* XMYMDHMShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB6C1F48142E00181110 /* XMYMDHMShow.m */; };
+		B5F6CB701F48146E00181110 /* XMYMDHMSShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB6F1F48146E00181110 /* XMYMDHMSShow.m */; };
+		B5F6CB731F48149100181110 /* XMYMDHShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB721F48149100181110 /* XMYMDHShow.m */; };
+		B5F6CB761F4814BD00181110 /* XMYMDShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB751F4814BD00181110 /* XMYMDShow.m */; };
+		B5F6CB791F4814DB00181110 /* XMMDHMShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB781F4814DB00181110 /* XMMDHMShow.m */; };
+		B5F6CB7C1F4814FC00181110 /* XMDHMShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB7B1F4814FC00181110 /* XMDHMShow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +88,21 @@
 		2EBA6BA31E715A2A00FAD879 /* XMViewController4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMViewController4.m; sourceTree = "<group>"; };
 		2EBA6BA41E715A2A00FAD879 /* XMViewController5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMViewController5.h; sourceTree = "<group>"; };
 		2EBA6BA51E715A2A00FAD879 /* XMViewController5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMViewController5.m; sourceTree = "<group>"; };
+		B5F6CB681F4813AE00181110 /* XMDateShowingType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMDateShowingType.h; path = ../XMDateShowingType.h; sourceTree = "<group>"; };
+		B5F6CB691F4813AE00181110 /* XMDateShowingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMDateShowingType.m; path = ../XMDateShowingType.m; sourceTree = "<group>"; };
+		B5F6CB6B1F48142E00181110 /* XMYMDHMShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMYMDHMShow.h; path = ../XMYMDHMShow.h; sourceTree = "<group>"; };
+		B5F6CB6C1F48142E00181110 /* XMYMDHMShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMYMDHMShow.m; path = ../XMYMDHMShow.m; sourceTree = "<group>"; };
+		B5F6CB6E1F48146E00181110 /* XMYMDHMSShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMYMDHMSShow.h; path = ../XMYMDHMSShow.h; sourceTree = "<group>"; };
+		B5F6CB6F1F48146E00181110 /* XMYMDHMSShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMYMDHMSShow.m; path = ../XMYMDHMSShow.m; sourceTree = "<group>"; };
+		B5F6CB711F48149100181110 /* XMYMDHShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMYMDHShow.h; path = ../XMYMDHShow.h; sourceTree = "<group>"; };
+		B5F6CB721F48149100181110 /* XMYMDHShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMYMDHShow.m; path = ../XMYMDHShow.m; sourceTree = "<group>"; };
+		B5F6CB741F4814BD00181110 /* XMYMDShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMYMDShow.h; path = ../XMYMDShow.h; sourceTree = "<group>"; };
+		B5F6CB751F4814BD00181110 /* XMYMDShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMYMDShow.m; path = ../XMYMDShow.m; sourceTree = "<group>"; };
+		B5F6CB771F4814DB00181110 /* XMMDHMShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMMDHMShow.h; path = ../XMMDHMShow.h; sourceTree = "<group>"; };
+		B5F6CB781F4814DB00181110 /* XMMDHMShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMDHMShow.m; path = ../XMMDHMShow.m; sourceTree = "<group>"; };
+		B5F6CB7A1F4814FC00181110 /* XMDHMShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMDHMShow.h; path = ../XMDHMShow.h; sourceTree = "<group>"; };
+		B5F6CB7B1F4814FC00181110 /* XMDHMShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMDHMShow.m; path = ../XMDHMShow.m; sourceTree = "<group>"; };
+		B5F6CB7D1F49169500181110 /* XMDateEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMDateEnum.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +208,8 @@
 		2E94CE7D1E71595600090A52 /* XMDatePicker */ = {
 			isa = PBXGroup;
 			children = (
+				B5F6CB7E1F493E1200181110 /* DateModel */,
+				B5F6CB7D1F49169500181110 /* XMDateEnum.h */,
 				2E94CE821E71595600090A52 /* XMDatePicker.h */,
 				2E94CE831E71595600090A52 /* XMDatePicker.m */,
 				2E94CE7E1E71595600090A52 /* UIButton+XMEvent.h */,
@@ -196,6 +220,27 @@
 				2E94CE851E71595600090A52 /* XMPickerTopBar.m */,
 			);
 			path = XMDatePicker;
+			sourceTree = "<group>";
+		};
+		B5F6CB7E1F493E1200181110 /* DateModel */ = {
+			isa = PBXGroup;
+			children = (
+				B5F6CB681F4813AE00181110 /* XMDateShowingType.h */,
+				B5F6CB691F4813AE00181110 /* XMDateShowingType.m */,
+				B5F6CB6B1F48142E00181110 /* XMYMDHMShow.h */,
+				B5F6CB6C1F48142E00181110 /* XMYMDHMShow.m */,
+				B5F6CB6E1F48146E00181110 /* XMYMDHMSShow.h */,
+				B5F6CB6F1F48146E00181110 /* XMYMDHMSShow.m */,
+				B5F6CB711F48149100181110 /* XMYMDHShow.h */,
+				B5F6CB721F48149100181110 /* XMYMDHShow.m */,
+				B5F6CB741F4814BD00181110 /* XMYMDShow.h */,
+				B5F6CB751F4814BD00181110 /* XMYMDShow.m */,
+				B5F6CB771F4814DB00181110 /* XMMDHMShow.h */,
+				B5F6CB781F4814DB00181110 /* XMMDHMShow.m */,
+				B5F6CB7A1F4814FC00181110 /* XMDHMShow.h */,
+				B5F6CB7B1F4814FC00181110 /* XMDHMShow.m */,
+			);
+			path = DateModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,14 +374,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E94CE891E71595600090A52 /* UIView+XMFrame.m in Sources */,
+				B5F6CB7C1F4814FC00181110 /* XMDHMShow.m in Sources */,
+				B5F6CB701F48146E00181110 /* XMYMDHMSShow.m in Sources */,
 				2E94CE881E71595600090A52 /* UIButton+XMEvent.m in Sources */,
+				B5F6CB731F48149100181110 /* XMYMDHShow.m in Sources */,
 				2EBA6BA91E715A2A00FAD879 /* XMViewController3.m in Sources */,
 				2E94CE4F1E71592F00090A52 /* AppDelegate.m in Sources */,
+				B5F6CB761F4814BD00181110 /* XMYMDShow.m in Sources */,
 				2E815F9A1E715FFF002ED799 /* XMViewController1.m in Sources */,
 				2E94CE8B1E71595600090A52 /* XMPickerTopBar.m in Sources */,
 				2EBA6BA71E715A2A00FAD879 /* XMViewController.m in Sources */,
+				B5F6CB791F4814DB00181110 /* XMMDHMShow.m in Sources */,
 				2E94CE8A1E71595600090A52 /* XMDatePicker.m in Sources */,
+				B5F6CB6A1F4813AE00181110 /* XMDateShowingType.m in Sources */,
 				2EBA6BA61E715A2A00FAD879 /* XMTableViewController.m in Sources */,
+				B5F6CB6D1F48142E00181110 /* XMYMDHMShow.m in Sources */,
 				2EBA6BA81E715A2A00FAD879 /* XMViewController2.m in Sources */,
 				2EBA6BAB1E715A2A00FAD879 /* XMViewController5.m in Sources */,
 				2EBA6BAA1E715A2A00FAD879 /* XMViewController4.m in Sources */,

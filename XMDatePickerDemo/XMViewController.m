@@ -47,7 +47,7 @@
         //        _datePicker.selectedLabelColor = [UIColor grayColor];
         _datePicker.componentWidth = 70;
         _datePicker.rowHeight = 30;
-//        _datePicker.yearUnit = @"年";
+        _datePicker.yearUnit = @"年";
         _datePicker.monthUnit = @"月";
         _datePicker.dayUnit = @"日";
         _datePicker.hourUnit = @"时";

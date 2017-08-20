@@ -25,14 +25,22 @@
 #import <objc/runtime.h>
 #import "UIView+XMFrame.h"
 #import "XMPickerTopBar.h"
-@interface XMDatePicker()<UIPickerViewDelegate,UIPickerViewDataSource,XMPickerTopBarDelegate>
+
+#import "XMYMDHShow.h"//年、月、日、时
+#import "XMYMDHMShow.h"//年、月、日、时、分
+#import "XMYMDHMSShow.h"//年、月、日、时、分、秒
+#import "XMYMDShow.h"//年、月、日
+#import "XMMDHMShow.h"//月、日、时、分
+#import "XMDHMShow.h"//日、时、分
+
+@interface XMDatePicker()<UIPickerViewDelegate,UIPickerViewDataSource,XMPickerTopBarDelegate,XMDateShowingTypeDataSource,XMDateShowingTypeDelegate>
 {
-    NSInteger _yearIndex;
-    NSInteger _monthIndex;
-    NSInteger _dayIndex;
-    NSInteger _hourIndex;
-    NSInteger _minteIndex;
-    NSInteger _secondIndex;
+//    NSInteger _yearIndex;
+//    NSInteger _monthIndex;
+//    NSInteger _dayIndex;
+//    NSInteger _hourIndex;
+//    NSInteger _minteIndex;
+//    NSInteger _secondIndex;
 }
 //@property(nonatomic, strong)UIViewController *controller;
 
@@ -51,14 +59,16 @@
 @property(nonatomic, strong)NSMutableArray *minites;
 @property (nonatomic, strong)NSMutableArray *seconds;
 
-@property(nonatomic, assign)int currentYear;
-@property(nonatomic, assign)int currentMonth;
-@property(nonatomic, assign)int currentDay;
-@property(nonatomic, assign)int currentHour;
-@property(nonatomic, assign)int currentMinite;
-@property (nonatomic, assign)int currentSecond;
+//@property(nonatomic, assign)int currentYear;
+//@property(nonatomic, assign)int currentMonth;
+//@property(nonatomic, assign)int currentDay;
+//@property(nonatomic, assign)int currentHour;
+//@property(nonatomic, assign)int currentMinite;
+//@property (nonatomic, assign)int currentSecond;
 
 @property(nonatomic, copy)NSString *dateString;
+
+@property (nonatomic, strong)XMDateShowingType *dateShow;
 
 @end
 
@@ -104,87 +114,89 @@
             }
         }];
     }
-  
 }
 
 
 #pragma mark - Delegates && DataSource
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return [self numberOfComponents];
+//    return [self numberOfComponents];
+    return self.dateShow.numberOfComponents;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    NSInteger number = [self.dateShow numberOfRowsInComponent:component];
+    return number;
     
-    //1 show all colums(展示 年、月、日、时、分)
-    if (self.dateShowType == DateShowingTypeYMDHM) {
-        if (component == 0) {//year
-            return self.years.count;
-        }else if (component == 1) {//month
-            return self.months.count;
-        }else if (component == 2) {//day
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
-        }else if (component == 3) {//hour
-            return self.hours.count;
-        }else if (component == 4) {//minite
-            return self.minites.count;
-        }
-        //2 show year-month-day hour
-    }else if (self.dateShowType == DateShowingTypeYMDH) {
-        if (component == 0) {//year
-            return self.years.count;
-        }else if (component == 1) {//month
-            return self.months.count;
-        }else if (component == 2) {//day
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
-        }else if (component == 3) {//hour
-            return self.hours.count;
-        }
-        //3 show year-month-day
-    }else if (self.dateShowType == DateShowingTypeYMD) {
-        if (component == 0) {//year
-            return self.years.count;
-        }else if (component == 1) {//month
-            return self.months.count;
-        }else if (component == 2) {//day
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
-        }
-        
-        //4 show month-day Hour:minite
-    }else if (self.dateShowType == DateShowingTypeMDHM) {
-        if (component == 0) {//months
-            return self.months.count;
-        }else if (component == 1) {//days
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
-        }else if (component == 2) {
-            return self.hours.count;
-        }else if (component == 3) {
-            return self.minites.count;
-        }
-        //5 show day Hour : minite
-    }else if (self.dateShowType == DateShowingTypeDHM) {
-        if (component == 0) {//days
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
-        }else if (component == 1) {//hours
-            return self.hours.count;
-        }else if (component == 2) {//mintes
-            return self.minites.count;
-        }
-    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
-        if (component == 0) {//year
-            return self.years.count;
-        }else if (component == 1) {//month
-            return self.months.count;
-        }else if (component == 2) {//day
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
-        }else if (component == 3) {//hour
-            return self.hours.count;
-        }else if (component == 4) {//minite
-            return self.minites.count;
-        }else if (component == 5) {
-            return self.seconds.count;
-        }
-    }
-    return 5;
+//    //1 show all colums(展示 年、月、日、时、分)
+//    if (self.dateShowType == DateShowingTypeYMDHM) {
+//        if (component == 0) {//year
+//            return self.years.count;
+//        }else if (component == 1) {//month
+//            return self.months.count;
+//        }else if (component == 2) {//day
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
+//        }else if (component == 3) {//hour
+//            return self.hours.count;
+//        }else if (component == 4) {//minite
+//            return self.minites.count;
+//        }
+//        //2 show year-month-day hour
+//    }else if (self.dateShowType == DateShowingTypeYMDH) {
+//        if (component == 0) {//year
+//            return self.years.count;
+//        }else if (component == 1) {//month
+//            return self.months.count;
+//        }else if (component == 2) {//day
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
+//        }else if (component == 3) {//hour
+//            return self.hours.count;
+//        }
+//        //3 show year-month-day
+//    }else if (self.dateShowType == DateShowingTypeYMD) {
+//        if (component == 0) {//year
+//            return self.years.count;
+//        }else if (component == 1) {//month
+//            return self.months.count;
+//        }else if (component == 2) {//day
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
+//        }
+//        
+//        //4 show month-day Hour:minite
+//    }else if (self.dateShowType == DateShowingTypeMDHM) {
+//        if (component == 0) {//months
+//            return self.months.count;
+//        }else if (component == 1) {//days
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
+//        }else if (component == 2) {
+//            return self.hours.count;
+//        }else if (component == 3) {
+//            return self.minites.count;
+//        }
+//        //5 show day Hour : minite
+//    }else if (self.dateShowType == DateShowingTypeDHM) {
+//        if (component == 0) {//days
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
+//        }else if (component == 1) {//hours
+//            return self.hours.count;
+//        }else if (component == 2) {//mintes
+//            return self.minites.count;
+//        }
+//    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
+//        if (component == 0) {//year
+//            return self.years.count;
+//        }else if (component == 1) {//month
+//            return self.months.count;
+//        }else if (component == 2) {//day
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear].count;
+//        }else if (component == 3) {//hour
+//            return self.hours.count;
+//        }else if (component == 4) {//minite
+//            return self.minites.count;
+//        }else if (component == 5) {
+//            return self.seconds.count;
+//        }
+//    }
+//    return 5;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
@@ -196,181 +208,186 @@
         [self p_setSelectedRowTitleLabelOfComponent:component];
     }
     
-    //1 show all colums(展示 年、月、日、时、分)
-    if (self.dateShowType == DateShowingTypeYMDHM) {
-        if (component == 0) {//year
-            return self.years[row];
-        }else if (component == 1) {//month
-            return self.months[row];
-        }else if (component == 2) {//day
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
-        }else if (component == 3) {//hour
-            return self.hours[row];
-        }else if (component == 4) {//minite
-            return self.minites[row];
-        }
-
-    //2 show year-month-day hour
-    }else if (self.dateShowType == DateShowingTypeYMDH) {
-        if (component == 0) {//year
-            return self.years[row];
-        }else if (component == 1) {//month
-            return self.months[row];
-        }else if (component == 2) {//day
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
-        }else if (component == 3) {//hour
-            return self.hours[row];
-        }
-       //3 show year-month-day
-    }else if (self.dateShowType == DateShowingTypeYMD) {
-        if (component == 0) {//year
-            return self.years[row];
-        }else if (component == 1) {//month
-            return self.months[row];
-        }else if (component == 2) {//day
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
-        }
+    NSString *title = [self.dateShow titleForRow:row forComponent:component];
+    return title;
     
-        //4 show month-day Hour:minite
-    }else if (self.dateShowType == DateShowingTypeMDHM) {
-        if (component == 0) {//months
-            return self.months[row];
-        }else if (component == 1) {//days
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
-        }else if (component == 2) {
-            return self.hours[row];
-        }else if (component == 3) {
-            return self.minites[row];
-        }
-    //5 show day Hour : minite
-    }else if (self.dateShowType == DateShowingTypeDHM) {
-        if (component == 0) {//days
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
-        }else if (component == 1) {//hours
-            return self.hours[row];
-        }else if (component == 2) {//mintes
-            return self.minites[row];
-        }
-    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
-        if (component == 0) {//year
-            return self.years[row];
-        }else if (component == 1) {//month
-            return self.months[row];
-        }else if (component == 2) {//day
-            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
-        }else if (component == 3) {//hour
-            return self.hours[row];
-        }else if (component == 4) {//minite
-            return self.minites[row];
-        }else if (component == 5) {
-            return self.seconds[row];
-        }
-    }
-    
-    return @"123";
+//    //1 show all colums(展示 年、月、日、时、分)
+//    if (self.dateShowType == DateShowingTypeYMDHM) {
+//        if (component == 0) {//year
+//            return self.years[row];
+//        }else if (component == 1) {//month
+//            return self.months[row];
+//        }else if (component == 2) {//day
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
+//        }else if (component == 3) {//hour
+//            return self.hours[row];
+//        }else if (component == 4) {//minite
+//            return self.minites[row];
+//        }
+//
+//    //2 show year-month-day hour
+//    }else if (self.dateShowType == DateShowingTypeYMDH) {
+//        if (component == 0) {//year
+//            return self.years[row];
+//        }else if (component == 1) {//month
+//            return self.months[row];
+//        }else if (component == 2) {//day
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
+//        }else if (component == 3) {//hour
+//            return self.hours[row];
+//        }
+//       //3 show year-month-day
+//    }else if (self.dateShowType == DateShowingTypeYMD) {
+//        if (component == 0) {//year
+//            return self.years[row];
+//        }else if (component == 1) {//month
+//            return self.months[row];
+//        }else if (component == 2) {//day
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
+//        }
+//    
+//        //4 show month-day Hour:minite
+//    }else if (self.dateShowType == DateShowingTypeMDHM) {
+//        if (component == 0) {//months
+//            return self.months[row];
+//        }else if (component == 1) {//days
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
+//        }else if (component == 2) {
+//            return self.hours[row];
+//        }else if (component == 3) {
+//            return self.minites[row];
+//        }
+//    //5 show day Hour : minite
+//    }else if (self.dateShowType == DateShowingTypeDHM) {
+//        if (component == 0) {//days
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
+//        }else if (component == 1) {//hours
+//            return self.hours[row];
+//        }else if (component == 2) {//mintes
+//            return self.minites[row];
+//        }
+//    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
+//        if (component == 0) {//year
+//            return self.years[row];
+//        }else if (component == 1) {//month
+//            return self.months[row];
+//        }else if (component == 2) {//day
+//            return [self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear][row];
+//        }else if (component == 3) {//hour
+//            return self.hours[row];
+//        }else if (component == 4) {//minite
+//            return self.minites[row];
+//        }else if (component == 5) {
+//            return self.seconds[row];
+//        }
+//    }
+//    
+//    return @"123";
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
 //    NSLog(@"didSelectRow ======= %ld component ======= %ld",row,component);
-    NSString *dateString = @"";
-    //1 show all colums(展示 年、月、日、时、分)
-    if (self.dateShowType == DateShowingTypeYMDHM) {
-        if (component == 0) {//year
-            [self p_updateDateAcordingToYearAtRow:row inComponent:component];
-        }else if (component == 1) {//month
-            //更新日期
-            self.currentMonth = [self.months[row] intValue];
-            [pickerView reloadComponent:component+1];
-            NSInteger selectedRow = [pickerView selectedRowInComponent:component+1];
-            self.currentDay = [self.days[selectedRow] intValue];
-        }else if (component == 2) {//day
-             self.currentDay = [self.days[row] intValue];
-        }else if (component == 3) {//hour
-             self.currentHour = [self.hours[row] intValue];
-        }else if (component == 4) {//minite
-             self.currentMinite = [self.minites[row] intValue];
-        }
-        dateString = [NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d:%.2d",self.currentYear,self.currentMonth,self.currentDay,self.currentHour,self.currentMinite];
-        //2 show year-month-day hour
-    }else if (self.dateShowType == DateShowingTypeYMDH) {
-        if (component == 0) {//year
-            //更新日期
-         [self p_updateDateAcordingToYearAtRow:row inComponent:component];
-        }else if (component == 1) {//month
-            //更新日期
-            self.currentMonth = [self.months[row] intValue];
-            [pickerView reloadComponent:component+1];
-            NSInteger selectedRow = [pickerView selectedRowInComponent:component+1];
-            self.currentDay = [self.days[selectedRow] intValue];
-        }else if (component == 2) {//day
-             self.currentDay = [self.days[row] intValue];
-        }else if (component == 3) {//hour
-            self.currentHour = [self.hours[row] intValue];
-        }
-        dateString = [NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d",self.currentYear,self.currentMonth,self.currentDay,self.currentHour];
-        //3 show year-month-day
-    }else if (self.dateShowType == DateShowingTypeYMD) {
-        if (component == 0) {//year
-         [self p_updateDateAcordingToYearAtRow:row inComponent:component];
-        }else if (component == 1) {//month
-            //更新日期
-            self.currentMonth = [self.months[row] intValue];
-            [pickerView reloadComponent:component+1];
-            NSInteger selectedRow = [pickerView selectedRowInComponent:component+1];
-            self.currentDay = [self.days[selectedRow] intValue];
-        }else if (component == 2) {//day
-            self.currentDay = [self.days[row] intValue];
-        }
-        dateString = [NSString stringWithFormat:@"%.4d-%.2d-%.2d",self.currentYear,self.currentMonth,self.currentDay];
-        
-    //4 show month-day Hour:minite
-    }else if (self.dateShowType == DateShowingTypeMDHM) {
-        if (component == 0) {//months
-            //更新日期
-            self.currentMonth = [self.months[row] intValue];
-            [pickerView reloadComponent:component+1];
-            NSInteger selectedRow = [pickerView selectedRowInComponent:component+1];
-            self.currentDay = [self.days[selectedRow] intValue];
-
-        }else if (component == 1) {//days
-             self.currentDay = [self.days[row] intValue];
-        }else if (component == 2) {
-            self.currentHour = [self.hours[row] intValue];
-        }else if (component == 3) {
-            self.currentMinite = [self.minites[row] intValue];
-        }
-        dateString = [NSString stringWithFormat:@"%.2d-%.2d %.2d:%.2d",self.currentMonth,self.currentDay,self.currentHour,self.currentMinite];
-        //5 show day Hour : minite
-    }else if (self.dateShowType == DateShowingTypeDHM) {
-        if (component == 0) {//days
-            self.currentDay = [self.days[row] intValue];
-        }else if (component == 1) {//hours
-            self.currentHour = [self.hours[row] intValue];
-        }else if (component == 2) {//mintes
-             self.currentMinite = [self.minites[row] intValue];
-        }
-        dateString = [NSString stringWithFormat:@"%.2d %.2d:%.2d",self.currentDay,self.currentHour,self.currentMinite];
-        //5 YYYY-mm-DD HH:mm:ss
-    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
-        if (component == 0) {//year
-            [self p_updateDateAcordingToYearAtRow:row inComponent:component];
-        }else if (component == 1) {//month
-            //更新日期
-            self.currentMonth = [self.months[row] intValue];
-            [pickerView reloadComponent:component+1];
-            NSInteger selectedRow = [pickerView selectedRowInComponent:component+1];
-            self.currentDay = [self.days[selectedRow] intValue];
-        }else if (component == 2) {//day
-            self.currentDay = [self.days[row] intValue];
-        }else if (component == 3) {//hour
-            self.currentHour = [self.hours[row] intValue];
-        }else if (component == 4) {//minite
-            self.currentMinite = [self.minites[row] intValue];
-        }else if (component == 5) {
-            self.currentSecond = [self.seconds[row] intValue];
-        }
-        dateString = [NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d:%.2d:%.2d",self.currentYear,self.currentMonth,self.currentDay,self.currentHour,self.currentMinite,self.currentSecond];
-    }
+//    NSString *dateString = @"";
+    NSString *dateString = [self.dateShow selectedTitleForRow:row inComponent:component];
+    
+//    //1 show all colums(展示 年、月、日、时、分)
+//    if (self.dateShowType == DateShowingTypeYMDHM) {
+//        if (component == 0) {//year
+//            [self p_updateDateAcordingToYearAtRow:row inComponent:component];
+//        }else if (component == 1) {//month
+//            //更新日期
+//            self.currentMonth = [self.months[row] intValue];
+//            [pickerView reloadComponent:component+1];
+//            NSInteger selectedRow = [pickerView selectedRowInComponent:component+1];
+//            self.currentDay = [self.days[selectedRow] intValue];
+//        }else if (component == 2) {//day
+//             self.currentDay = [self.days[row] intValue];
+//        }else if (component == 3) {//hour
+//             self.currentHour = [self.hours[row] intValue];
+//        }else if (component == 4) {//minite
+//             self.currentMinite = [self.minites[row] intValue];
+//        }
+//        dateString = [NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d:%.2d",self.currentYear,self.currentMonth,self.currentDay,self.currentHour,self.currentMinite];
+//        //2 show year-month-day hour
+//    }else if (self.dateShowType == DateShowingTypeYMDH) {
+//        if (component == 0) {//year
+//            //更新日期
+//         [self p_updateDateAcordingToYearAtRow:row inComponent:component];
+//        }else if (component == 1) {//month
+//            //更新日期
+//            self.currentMonth = [self.months[row] intValue];
+//            [pickerView reloadComponent:component+1];
+//            NSInteger selectedRow = [pickerView selectedRowInComponent:component+1];
+//            self.currentDay = [self.days[selectedRow] intValue];
+//        }else if (component == 2) {//day
+//             self.currentDay = [self.days[row] intValue];
+//        }else if (component == 3) {//hour
+//            self.currentHour = [self.hours[row] intValue];
+//        }
+//        dateString = [NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d",self.currentYear,self.currentMonth,self.currentDay,self.currentHour];
+//        //3 show year-month-day
+//    }else if (self.dateShowType == DateShowingTypeYMD) {
+//        if (component == 0) {//year
+//         [self p_updateDateAcordingToYearAtRow:row inComponent:component];
+//        }else if (component == 1) {//month
+//            //更新日期
+//            self.currentMonth = [self.months[row] intValue];
+//            [pickerView reloadComponent:component+1];
+//            NSInteger selectedRow = [pickerView selectedRowInComponent:component+1];
+//            self.currentDay = [self.days[selectedRow] intValue];
+//        }else if (component == 2) {//day
+//            self.currentDay = [self.days[row] intValue];
+//        }
+//        dateString = [NSString stringWithFormat:@"%.4d-%.2d-%.2d",self.currentYear,self.currentMonth,self.currentDay];
+//        
+//    //4 show month-day Hour:minite
+//    }else if (self.dateShowType == DateShowingTypeMDHM) {
+//        if (component == 0) {//months
+//            //更新日期
+//            self.currentMonth = [self.months[row] intValue];
+//            [pickerView reloadComponent:component+1];
+//            NSInteger selectedRow = [pickerView selectedRowInComponent:component+1];
+//            self.currentDay = [self.days[selectedRow] intValue];
+//
+//        }else if (component == 1) {//days
+//             self.currentDay = [self.days[row] intValue];
+//        }else if (component == 2) {
+//            self.currentHour = [self.hours[row] intValue];
+//        }else if (component == 3) {
+//            self.currentMinite = [self.minites[row] intValue];
+//        }
+//        dateString = [NSString stringWithFormat:@"%.2d-%.2d %.2d:%.2d",self.currentMonth,self.currentDay,self.currentHour,self.currentMinite];
+//        //5 show day Hour : minite
+//    }else if (self.dateShowType == DateShowingTypeDHM) {
+//        if (component == 0) {//days
+//            self.currentDay = [self.days[row] intValue];
+//        }else if (component == 1) {//hours
+//            self.currentHour = [self.hours[row] intValue];
+//        }else if (component == 2) {//mintes
+//             self.currentMinite = [self.minites[row] intValue];
+//        }
+//        dateString = [NSString stringWithFormat:@"%.2d %.2d:%.2d",self.currentDay,self.currentHour,self.currentMinite];
+//        //5 YYYY-mm-DD HH:mm:ss
+//    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
+//        if (component == 0) {//year
+//            [self p_updateDateAcordingToYearAtRow:row inComponent:component];
+//        }else if (component == 1) {//month
+//            //更新日期
+//            self.currentMonth = [self.months[row] intValue];
+//            [pickerView reloadComponent:component+1];
+//            NSInteger selectedRow = [pickerView selectedRowInComponent:component+1];
+//            self.currentDay = [self.days[selectedRow] intValue];
+//        }else if (component == 2) {//day
+//            self.currentDay = [self.days[row] intValue];
+//        }else if (component == 3) {//hour
+//            self.currentHour = [self.hours[row] intValue];
+//        }else if (component == 4) {//minite
+//            self.currentMinite = [self.minites[row] intValue];
+//        }else if (component == 5) {
+//            self.currentSecond = [self.seconds[row] intValue];
+//        }
+//        dateString = [NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d:%.2d:%.2d",self.currentYear,self.currentMonth,self.currentDay,self.currentHour,self.currentMinite,self.currentSecond];
+//    }
 
     self.dateLabel.text = dateString;
     self.dateString = dateString;
@@ -407,6 +424,19 @@
 //}
 
 
+#pragma mark - XMDateShowingTypeDataSource
+- (NSInteger)selectedRowInComponent:(NSInteger)component {
+    [self.picker reloadComponent:component];
+    NSInteger selectedRow = [self.picker selectedRowInComponent:component];
+    return selectedRow;
+}
+
+#pragma mark - 
+
+- (void)selectedRow:(NSInteger)row inComponent:(NSInteger)component {
+    [self.picker selectRow:row inComponent:component animated:NO];
+}
+
 #pragma mark -  XMPickerTopBarDelegate
 - (void)topBar:(XMPickerTopBar *)topBar didClickedCancelButton:(UIButton *)sender {
     [self dismissPickerView];
@@ -436,149 +466,157 @@
 - (void)p_commonInit {
     self.pickerViewType = PickerViewTypeStaticSperator;
     self.dateShowType = DateShowingTypeYMDHM;
+    self.dateShow = [[XMYMDHMShow alloc]init];
+    self.dateShow.dataSource = self;
+    self.dateShow.delegate = self;
+    
     self.seperateLineColor = [UIColor redColor];
     //default 1970 to 2050
-     _years = [[NSMutableArray alloc]init];
-    for (int i = 1970; i<= 2050; i++) {
-        [_years addObject:[NSString stringWithFormat:@"%.4d%@",i,self.yearUnit?self.yearUnit:@""]];
-    }
+//     _years = [[NSMutableArray alloc]init];
+//    for (int i = 1970; i<= 2050; i++) {
+//        [_years addObject:[NSString stringWithFormat:@"%.4d%@",i,self.yearUnit?self.yearUnit:@""]];
+//    }
     
         self.topMargin = 40;
     
-    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:[NSDate date]];
-    self.currentYear = (int)components.year;
-    self.currentMonth = (int)components.month;
-    self.currentDay =  (int)components.day;
-    self.currentHour = (int)components.hour;
-    self.currentMinite = (int)components.minute;
-    self.currentSecond = 0;
+//    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:[NSDate date]];
+//    self.currentYear = (int)components.year;
+//    self.currentMonth = (int)components.month;
+//    self.currentDay =  (int)components.day;
+//    self.currentHour = (int)components.hour;
+//    self.currentMinite = (int)components.minute;
+//    self.currentSecond = 0;
 //    self.bottomMargin = 20;
 }
 
 
 - (void)p_scrollToDefaultLocation {
     
-    [self p_initDateData];
+//    [self.dateShow scrollToRow:<#(NSInteger)#> inComponent:<#(NSInteger)#>]
+    [self.dateShow scrollToDefaultDate];
     
-    //1 yyyy-MM-dd HH:mm(展示 年、月、日、时、分)
-    if (self.dateShowType == DateShowingTypeYMDHM) {
-        [self.picker selectRow:_yearIndex inComponent:0 animated:NO];
-        [self.picker selectRow:_monthIndex inComponent:1 animated:NO];
-        [self.picker selectRow:_dayIndex inComponent:2 animated:NO];
-        [self.picker selectRow:_hourIndex inComponent:3 animated:NO];
-        [self.picker selectRow:_minteIndex inComponent:4 animated:NO];
-        //2 show year-month-day hour
-    }else if (self.dateShowType == DateShowingTypeYMDH) {
-        [self.picker selectRow:_yearIndex inComponent:0 animated:NO];
-        [self.picker selectRow:_monthIndex inComponent:1 animated:NO];
-        [self.picker selectRow:_dayIndex inComponent:2 animated:NO];
-        [self.picker selectRow:_hourIndex inComponent:3 animated:NO];
-        //3 show year-month-day
-    }else if (self.dateShowType == DateShowingTypeYMD) {
-        [self.picker selectRow:_yearIndex inComponent:0 animated:NO];
-        [self.picker selectRow:_monthIndex inComponent:1 animated:NO];
-        [self.picker selectRow:_dayIndex inComponent:2 animated:NO];
-        
-        //4 show month-day Hour:minite
-    }else if (self.dateShowType == DateShowingTypeMDHM) {
-        //months
-        [self.picker selectRow:_monthIndex inComponent:0 animated:NO];
-        //days
-        [self.picker selectRow:_dayIndex inComponent:1 animated:NO];
-        //hour
-        [self.picker selectRow:_hourIndex inComponent:2 animated:NO];
-        //minite
-        [self.picker selectRow:_minteIndex inComponent:3 animated:NO];
-        //5 show day Hour : minite
-    }else if (self.dateShowType == DateShowingTypeDHM) {
-        [self.picker selectRow:_dayIndex inComponent:0 animated:NO];
-        [self.picker selectRow:_hourIndex inComponent:1 animated:NO];
-        [self.picker selectRow:_minteIndex inComponent:2 animated:NO];
-        //6 yyyy-MM-dd HH:mm:ss
-    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
-        [self.picker selectRow:_yearIndex inComponent:0 animated:NO];
-        [self.picker selectRow:_monthIndex inComponent:1 animated:NO];
-        [self.picker selectRow:_dayIndex inComponent:2 animated:NO];
-        [self.picker selectRow:_hourIndex inComponent:3 animated:NO];
-        [self.picker selectRow:_minteIndex inComponent:4 animated:NO];
-        [self.picker selectRow:_secondIndex inComponent:5 animated:NO];
-    }
+//    [self p_initDateData];
+    
+//    //1 yyyy-MM-dd HH:mm(展示 年、月、日、时、分)
+//    if (self.dateShowType == DateShowingTypeYMDHM) {
+//        [self.picker selectRow:_yearIndex inComponent:0 animated:NO];
+//        [self.picker selectRow:_monthIndex inComponent:1 animated:NO];
+//        [self.picker selectRow:_dayIndex inComponent:2 animated:NO];
+//        [self.picker selectRow:_hourIndex inComponent:3 animated:NO];
+//        [self.picker selectRow:_minteIndex inComponent:4 animated:NO];
+//        //2 show year-month-day hour
+//    }else if (self.dateShowType == DateShowingTypeYMDH) {
+//        [self.picker selectRow:_yearIndex inComponent:0 animated:NO];
+//        [self.picker selectRow:_monthIndex inComponent:1 animated:NO];
+//        [self.picker selectRow:_dayIndex inComponent:2 animated:NO];
+//        [self.picker selectRow:_hourIndex inComponent:3 animated:NO];
+//        //3 show year-month-day
+//    }else if (self.dateShowType == DateShowingTypeYMD) {
+//        [self.picker selectRow:_yearIndex inComponent:0 animated:NO];
+//        [self.picker selectRow:_monthIndex inComponent:1 animated:NO];
+//        [self.picker selectRow:_dayIndex inComponent:2 animated:NO];
+//        
+//        //4 show month-day Hour:minite
+//    }else if (self.dateShowType == DateShowingTypeMDHM) {
+//        //months
+//        [self.picker selectRow:_monthIndex inComponent:0 animated:NO];
+//        //days
+//        [self.picker selectRow:_dayIndex inComponent:1 animated:NO];
+//        //hour
+//        [self.picker selectRow:_hourIndex inComponent:2 animated:NO];
+//        //minite
+//        [self.picker selectRow:_minteIndex inComponent:3 animated:NO];
+//        //5 show day Hour : minite
+//    }else if (self.dateShowType == DateShowingTypeDHM) {
+//        [self.picker selectRow:_dayIndex inComponent:0 animated:NO];
+//        [self.picker selectRow:_hourIndex inComponent:1 animated:NO];
+//        [self.picker selectRow:_minteIndex inComponent:2 animated:NO];
+//        //6 yyyy-MM-dd HH:mm:ss
+//    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
+//        [self.picker selectRow:_yearIndex inComponent:0 animated:NO];
+//        [self.picker selectRow:_monthIndex inComponent:1 animated:NO];
+//        [self.picker selectRow:_dayIndex inComponent:2 animated:NO];
+//        [self.picker selectRow:_hourIndex inComponent:3 animated:NO];
+//        [self.picker selectRow:_minteIndex inComponent:4 animated:NO];
+//        [self.picker selectRow:_secondIndex inComponent:5 animated:NO];
+//    }
 }
 
-- (void)p_initDateData {
-    _yearIndex = [self.years indexOfObject:[NSString stringWithFormat:@"%.4d%@",self.currentYear,self.yearUnit?self.yearUnit:@""]];
-    _monthIndex = [self.months indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentMonth,self.monthUnit?self.monthUnit:@""]];
-    _dayIndex = [[self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear] indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentDay,self.dayUnit?self.dayUnit:@""]];
-    _hourIndex = [self.hours indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentHour,self.hourUnit?self.hourUnit:@""]];
-    _minteIndex = [self.minites indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentMinite,self.miniteUnit?self.miniteUnit:@""]];
-    _secondIndex = [self.seconds indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentSecond,self.secondUnit?self.secondUnit:@""]];
-    
-}
+//- (void)p_initDateData {
+//    _yearIndex = [self.years indexOfObject:[NSString stringWithFormat:@"%.4d%@",self.currentYear,self.yearUnit?self.yearUnit:@""]];
+//    _monthIndex = [self.months indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentMonth,self.monthUnit?self.monthUnit:@""]];
+//    _dayIndex = [[self p_caculateDaysFromMonth:self.currentMonth year:self.currentYear] indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentDay,self.dayUnit?self.dayUnit:@""]];
+//    _hourIndex = [self.hours indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentHour,self.hourUnit?self.hourUnit:@""]];
+//    _minteIndex = [self.minites indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentMinite,self.miniteUnit?self.miniteUnit:@""]];
+//    _secondIndex = [self.seconds indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentSecond,self.secondUnit?self.secondUnit:@""]];
+//    
+//}
 
 
-- (NSMutableArray *)p_getCommonArray:(NSMutableArray *)array elementCount:(int)count uint:(NSString *)unit{
-    if (array.count) {
-        [array removeAllObjects];
-    }
-    if (count == 12) {//月
-        for (int i = 1; i<=count; i++) {
-            [array addObject:[NSString stringWithFormat:@"%.2d%@",i,unit?unit:@""]];
-        }
-    }else {
-        for (int i = 0; i<=count; i++) {
-            [array addObject:[NSString stringWithFormat:@"%.2d%@",i,unit?unit:@""]];
-        }
-    }
-    
-    return array;
-}
+//- (NSMutableArray *)p_getCommonArray:(NSMutableArray *)array
+//                        elementCount:(int)count
+//                                uint:(NSString *)unit{
+//    if (array.count) {
+//        [array removeAllObjects];
+//    }
+//    if (count == 12) {//月
+//        for (int i = 1; i<=count; i++) {
+//            [array addObject:[NSString stringWithFormat:@"%.2d%@",i,unit?unit:@""]];
+//        }
+//    }else {
+//        for (int i = 0; i<=count; i++) {
+//            [array addObject:[NSString stringWithFormat:@"%.2d%@",i,unit?unit:@""]];
+//        }
+//    }
+//    return array;
+//}
 
 
-- (NSMutableArray *)p_caculateDaysFromMonth:(int)month year:(int)year {
-    _days = [[NSMutableArray alloc]init];
-    if (_days && _days.count) {
-        [_days removeAllObjects];
-    }
-    
-    int days = 31;
-//    NSLog(@"%d",DaysOfEveryMonth(month));
-    if ([self daysOfEveryMonth:month]>=30) {
-        days = [self daysOfEveryMonth:month];
-    }else {
-        days = [self p_caculateDaysOfFebaryFromYear:year];
-    }
-    
-    for (int i = 1; i<= days; i++) {
-        [_days addObject:[NSString stringWithFormat:@"%.2d%@",i,self.dayUnit?self.dayUnit:@""]];
-    }
-    
-    return _days;
-}
+//- (NSMutableArray *)p_caculateDaysFromMonth:(int)month year:(int)year {
+//    _days = [[NSMutableArray alloc]init];
+//    if (_days && _days.count) {
+//        [_days removeAllObjects];
+//    }
+//    
+//    int days = 31;
+////    NSLog(@"%d",DaysOfEveryMonth(month));
+//    if ([self daysOfEveryMonth:month]>=30) {
+//        days = [self daysOfEveryMonth:month];
+//    }else {
+//        days = [self p_caculateDaysOfFebaryFromYear:year];
+//    }
+//    
+//    for (int i = 1; i<= days; i++) {
+//        [_days addObject:[NSString stringWithFormat:@"%.2d%@",i,self.dayUnit?self.dayUnit:@""]];
+//    }
+//    
+//    return _days;
+//}
 
 
-- (int)p_caculateDaysOfFebaryFromYear:(int)year {
-    int temYear = year;
-    if (self.dateShowType != DateShowingTypeMDHM && self.dateShowType != DateShowingTypeDHM) {
-        NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-        NSDateComponents *component = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:[NSDate date]];
-        temYear = (int)component.year;
-    }
-    if (temYear %4 == 0) {
-        return 29;
-    }
-    return 28;
-}
+//- (int)p_caculateDaysOfFebaryFromYear:(int)year {
+//    int temYear = year;
+//    if (self.dateShowType != DateShowingTypeMDHM && self.dateShowType != DateShowingTypeDHM) {
+//        NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+//        NSDateComponents *component = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:[NSDate date]];
+//        temYear = (int)component.year;
+//    }
+//    if (temYear %4 == 0) {
+//        return 29;
+//    }
+//    return 28;
+//}
 
-- (int)daysOfEveryMonth:(int)month {
-    int days = 0;
-    if (IsThirtyOneDays(month)) {
-        days = 31;
-    }else if (IsThirtyDays(month)) {
-        days = 30;
-    }
-    return days;
-}
+//- (int)daysOfEveryMonth:(int)month {
+//    int days = 0;
+//    if (IsThirtyOneDays(month)) {
+//        days = 31;
+//    }else if (IsThirtyDays(month)) {
+//        days = 30;
+//    }
+//    return days;
+//}
 
 - (void)p_setSelectedRowTitleLabelOfComponent:(NSInteger)component {
     
@@ -587,7 +625,6 @@
         self.picker.subviews[2].hidden = YES;
     }
    
-
      CGFloat textWidth = 0;
     NSString *labelTex = @"xxxx";
     if (self.dateShowType !=DateShowingTypeDHM && self.dateShowType != DateShowingTypeMDHM) {
@@ -665,7 +702,8 @@
     //static sperator
     if (self.pickerViewType != PickerViewTypeStaticSperator) return;
     CGFloat spacing = 4.75f;
-    NSInteger numberOfComponent = [self numberOfComponents];
+//    NSInteger numberOfComponent = [self numberOfComponents];
+    NSInteger numberOfComponent = self.dateShow.numberOfComponents;
     CGFloat margin = (self.width - self.componentWidth * numberOfComponent - (numberOfComponent - 1)*spacing)/2;
     CGFloat textLabelOffSet = 9.0f;
     CGFloat textOffSet = (self.componentWidth - textLabelOffSet - sepepatorWidth)/2;
@@ -685,26 +723,26 @@
    
 }
 
-- (NSInteger)numberOfComponents {
-    if (self.dateShowType == DateShowingTypeYMDH || self.dateShowType == DateShowingTypeMDHM) {
-        return 4;
-    }else if (self.dateShowType == DateShowingTypeYMD || self.dateShowType == DateShowingTypeDHM) {
-        return 3;
-    }else if (self.dateShowType == DateShowingTypeYMDHM) {
-        return 5;
-    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
-        return 6;
-    }
-    return 5;
-}
+//- (NSInteger)numberOfComponents {
+//    if (self.dateShowType == DateShowingTypeYMDH || self.dateShowType == DateShowingTypeMDHM) {
+//        return 4;
+//    }else if (self.dateShowType == DateShowingTypeYMD || self.dateShowType == DateShowingTypeDHM) {
+//        return 3;
+//    }else if (self.dateShowType == DateShowingTypeYMDHM) {
+//        return 5;
+//    }else if (self.dateShowType == DateShowingTypeYMDHMS) {
+//        return 6;
+//    }
+//    return 5;
+//}
 
-- (void)p_updateDateAcordingToYearAtRow:(NSInteger)row inComponent:(NSInteger)component {
-    //更新日期
-    self.currentYear = [self.years[row] intValue];
-    [self.picker reloadComponent:component+2];
-    NSInteger selectedRow = [self.picker selectedRowInComponent:component+2];
-    self.currentDay = [self.days[selectedRow] intValue];
-}
+//- (void)p_updateDateAcordingToYearAtRow:(NSInteger)row inComponent:(NSInteger)component {
+//    //更新日期
+//    self.currentYear = [self.years[row] intValue];
+//    [self.picker reloadComponent:component+2];
+//    NSInteger selectedRow = [self.picker selectedRowInComponent:component+2];
+//    self.currentDay = [self.days[selectedRow] intValue];
+//}
 
 
 - (CGFloat)p_widthOfText:(NSString *)text font:(UIFont *)font {
@@ -714,21 +752,22 @@
 }
 
 - (NSString *)p_setDefaultText {
-    NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *components = [calendar components:NSCalendarUnitYear |NSCalendarUnitMonth |NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:[NSDate date]];
-//    NSCalendarUnit unit
-    if (self.dateShowType == DateShowingTypeYMDHM) {
-        return [NSString stringWithFormat:@"%d-%.2d-%.2d %.2d:%.2d",(int)components.year,(int)components.month,(int)components.day,(int)(int)components.hour,(int)components.minute];
-    }else if (self.dateShowType == DateShowingTypeYMDH) {
-        return [NSString stringWithFormat:@"%d-%.2d-%.2d %.2d",(int)components.year,(int)components.month,(int)components.day,(int)components.hour];
-    }else if(self.dateShowType == DateShowingTypeYMD) {
-          return [NSString stringWithFormat:@"%d-%.2d-%.2d",(int)components.year,(int)components.month,(int)components.day];
-    }else if (self.dateShowType == DateShowingTypeMDHM) {
-        return [NSString stringWithFormat:@"%.2d-%.2d %.2d:%.2d",(int)components.month,(int)components.day,(int)components.hour,(int)components.minute];
-    }else if (self.dateShowType == DateShowingTypeDHM) {
-        return [NSString stringWithFormat:@"%.2d %.2d:%.2d",(int)components.day,(int)components.hour,(int)components.minute];
-    }
-    return @"";
+//    NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+//    NSDateComponents *components = [calendar components:NSCalendarUnitYear |NSCalendarUnitMonth |NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:[NSDate date]];
+////    NSCalendarUnit unit
+//    if (self.dateShowType == DateShowingTypeYMDHM) {
+//        return [NSString stringWithFormat:@"%d-%.2d-%.2d %.2d:%.2d",(int)components.year,(int)components.month,(int)components.day,(int)(int)components.hour,(int)components.minute];
+//    }else if (self.dateShowType == DateShowingTypeYMDH) {
+//        return [NSString stringWithFormat:@"%d-%.2d-%.2d %.2d",(int)components.year,(int)components.month,(int)components.day,(int)components.hour];
+//    }else if(self.dateShowType == DateShowingTypeYMD) {
+//          return [NSString stringWithFormat:@"%d-%.2d-%.2d",(int)components.year,(int)components.month,(int)components.day];
+//    }else if (self.dateShowType == DateShowingTypeMDHM) {
+//        return [NSString stringWithFormat:@"%.2d-%.2d %.2d:%.2d",(int)components.month,(int)components.day,(int)components.hour,(int)components.minute];
+//    }else if (self.dateShowType == DateShowingTypeDHM) {
+//        return [NSString stringWithFormat:@"%.2d %.2d:%.2d",(int)components.day,(int)components.hour,(int)components.minute];
+//    }
+//    return @"";
+    return [self.dateShow currentDateString];
 }
 
 #pragma mark - SetMethods
@@ -760,31 +799,43 @@
 
 - (void)setYearUnit:(NSString *)yearUnit {
     _yearUnit = yearUnit;
-    NSInteger count = self.years.count;
-    NSMutableArray *temArray = [[NSMutableArray alloc]init];
-    for (NSInteger i = 0; i<count; i++) {
-        NSString *yearStr = self.years[i];
-        NSString *appendStr = yearUnit?yearUnit:@"";
-        yearStr = [yearStr stringByAppendingString:appendStr];
-        [temArray addObject:yearStr];
-    }
+    [self.dateShow setYearUnit:yearUnit];
     
-    self.years = temArray;
+//    NSInteger count = self.years.count;
+//    NSMutableArray *temArray = [[NSMutableArray alloc]init];
+//    for (NSInteger i = 0; i<count; i++) {
+//        NSString *yearStr = self.years[i];
+//        NSString *appendStr = yearUnit?yearUnit:@"";
+//        yearStr = [yearStr stringByAppendingString:appendStr];
+//        [temArray addObject:yearStr];
+//    }
+//    
+//    self.years = temArray;
 }
 
 - (void)setMonthUnit:(NSString *)monthUnit {
     _monthUnit = monthUnit;
-    [self months];
+    [self.dateShow setMonthUnit:monthUnit];
+    
+//    [self months];
+}
+
+- (void)setDayUnit:(NSString *)dayUnit {
+    [self.dateShow setDayUnit:dayUnit];
 }
 
 - (void)setHourUnit:(NSString *)hourUnit {
     _hourUnit = hourUnit;
-    [self hours];
+    [self.dateShow setHourUnit:hourUnit];
+    
+//    [self hours];
 }
 
 - (void)setMiniteUnit:(NSString *)miniteUnit {
     _miniteUnit = miniteUnit;
-    [self minites];
+    [self.dateShow setMiniteUnit:miniteUnit];
+    
+//    [self minites];
 }
 
 - (void)setDateLabel:(UILabel *)dateLabel {
@@ -852,33 +903,41 @@
     return _maskView;
 }
 
-- (NSMutableArray *)months {
-    if (!_months) {
-        _months = [[NSMutableArray alloc]init];
-    }
-    return [self p_getCommonArray:_months elementCount:MonthsOfEachYear uint:self.monthUnit];
-}
-
-- (NSMutableArray *)hours {
-    if (!_hours) {
-        _hours = [[NSMutableArray alloc]init];
-    }
-    return [self p_getCommonArray:_hours elementCount:HoursOfEachDay uint:self.hourUnit];
-}
-
-- (NSMutableArray *)minites {
-    if (!_minites) {
-        _minites = [[NSMutableArray alloc]init];
-    }
-    return [self p_getCommonArray:_minites elementCount:MinitesOfEachHour uint:self.miniteUnit];
-}
-
-- (NSMutableArray *)seconds {
-    if (!_seconds) {
-        _seconds = [[NSMutableArray alloc]init];
-    }
-    return [self p_getCommonArray:_seconds elementCount:SecondsOfEachMinite uint:self.secondUnit];
-}
+//- (NSMutableArray *)months {
+//    if (!_months) {
+//        _months = [[NSMutableArray alloc]init];
+//    }
+//    return [self p_getCommonArray:_months
+//                     elementCount:MonthsOfEachYear
+//                             uint:self.monthUnit];
+//}
+//
+//- (NSMutableArray *)hours {
+//    if (!_hours) {
+//        _hours = [[NSMutableArray alloc]init];
+//    }
+//    return [self p_getCommonArray:_hours
+//                     elementCount:HoursOfEachDay
+//                             uint:self.hourUnit];
+//}
+//
+//- (NSMutableArray *)minites {
+//    if (!_minites) {
+//        _minites = [[NSMutableArray alloc]init];
+//    }
+//    return [self p_getCommonArray:_minites
+//                     elementCount:MinitesOfEachHour
+//                             uint:self.miniteUnit];
+//}
+//
+//- (NSMutableArray *)seconds {
+//    if (!_seconds) {
+//        _seconds = [[NSMutableArray alloc]init];
+//    }
+//    return [self p_getCommonArray:_seconds
+//                     elementCount:SecondsOfEachMinite
+//                             uint:self.secondUnit];
+//}
 
 
 

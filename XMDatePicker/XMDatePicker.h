@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XMDateEnum.h"
 
 typedef enum{
     PickerViewTypeLongSperator = 1,//Default
@@ -14,14 +15,7 @@ typedef enum{
     PickerViewTypeStaticSperator
 } PickerViewType;
 
-typedef NS_ENUM(NSInteger,DateShowingType) {
-    DateShowingTypeYMDHM = 1,//year、month、day、hour and minite
-    DateShowingTypeYMDHMS,//year、month、day、hour and minite、second
-    DateShowingTypeYMDH, //year、month、day and hour
-    DateShowingTypeYMD,  //year、month、day
-    DateShowingTypeMDHM, //month、day、hour and minite
-    DateShowingTypeDHM   //day、hour and minite
-};
+
 
 @class XMDatePicker;
 @protocol XMDatePickerDelegate <NSObject>

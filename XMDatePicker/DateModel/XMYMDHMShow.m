@@ -84,7 +84,62 @@
         self.currentMinite = [self.minites[row] intValue];
     }
     NSString * dateString = [NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d:%.2d",self.currentYear,self.currentMonth,self.currentDay,self.currentHour,self.currentMinite];
-    return  dateString;
+    NSString *tempStr;
+    BOOL  isValid = [self p_isVaildOfSelectedTimeWithDateString:&tempStr];
+    if (!isValid) {
+        dateString = tempStr;
+    }
+    return dateString;
+}
+
+- (BOOL)p_isVaildOfSelectedTimeWithDateString:(NSString **)dateString {
+    NSDateFormatter *formate = [[NSDateFormatter alloc]init];
+    formate.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSDate *date = [formate dateFromString:[NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d:%.2d",
+                                            self.currentYear,
+                                            self.currentMonth,
+                                            self.currentDay,
+                                            self.currentHour,
+                                            self.currentMinite]];
+    if ([date timeIntervalSinceDate:self.maximumDate]>0) {//大于最大时间
+        if (self.delegate && [self.delegate respondsToSelector:@selector(selectedRow:inComponent:)]) {
+            
+            NSDateComponents *components = [NSCalendar componetsFromDate:self.maximumDate];
+            NSInteger yearIndex = [self yearIndexOfYear:(int)components.year];
+            NSInteger monthIndex = [self monthIndxOfMonth:(int)components.month];
+            NSInteger dayIndex = [self dayIndexOfDay:(int)components.day];
+            NSInteger hourIndex = [self hourIndexOfHour:(int)components.hour];
+            NSInteger miniteIndex = [self miniteIndexOfMinite:(int)components.minute];
+            [self.delegate selectedRow:yearIndex inComponent:0];
+            [self.delegate selectedRow:monthIndex inComponent:1];
+            [self.delegate selectedRow:dayIndex inComponent:2];
+            [self.delegate selectedRow:hourIndex inComponent:3];
+            [self.delegate selectedRow:miniteIndex inComponent:4];
+            *dateString = [NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d:%.2d",
+                           (int)components.year,
+                           (int)components.month,
+                           (int)components.day,
+                           (int)components.hour,
+                           (int)components.minute];
+            return NO;
+        }
+    }else if ([date timeIntervalSinceDate:self.minimumDate]<0) {//小于最小时间
+        if (self.delegate && [self.delegate respondsToSelector:@selector(selectedRow:inComponent:)]) {
+            NSDateComponents *components = [NSCalendar componetsFromDate:self.maximumDate];
+            NSInteger yearIndex = [self yearIndexOfYear:(int)components.year];
+            NSInteger monthIndex = [self monthIndxOfMonth:1];
+            NSInteger dayIndex = [self dayIndexOfDay:1];
+            NSInteger hourIndex = [self hourIndexOfHour:0];
+            NSInteger miniteIndex = [self miniteIndexOfMinite:0];
+            [self.delegate selectedRow:yearIndex inComponent:0];
+            [self.delegate selectedRow:monthIndex inComponent:1];
+            [self.delegate selectedRow:dayIndex inComponent:2];
+            [self.delegate selectedRow:hourIndex inComponent:3];
+            return NO;
+        }
+        
+    }
+    return YES;
 }
 
 - (void)scrollToDefaultDate {

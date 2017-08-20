@@ -15,16 +15,14 @@
 		2E94CE5A1E71592F00090A52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E94CE581E71592F00090A52 /* LaunchScreen.storyboard */; };
 		2E94CE651E71592F00090A52 /* XMDatePickerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E94CE641E71592F00090A52 /* XMDatePickerDemoTests.m */; };
 		2E94CE701E71592F00090A52 /* XMDatePickerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E94CE6F1E71592F00090A52 /* XMDatePickerDemoUITests.m */; };
-		2E94CE881E71595600090A52 /* UIButton+XMEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E94CE7F1E71595600090A52 /* UIButton+XMEvent.m */; };
-		2E94CE891E71595600090A52 /* UIView+XMFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E94CE811E71595600090A52 /* UIView+XMFrame.m */; };
 		2E94CE8A1E71595600090A52 /* XMDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E94CE831E71595600090A52 /* XMDatePicker.m */; };
-		2E94CE8B1E71595600090A52 /* XMPickerTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E94CE851E71595600090A52 /* XMPickerTopBar.m */; };
 		2EBA6BA61E715A2A00FAD879 /* XMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA6B9B1E715A2A00FAD879 /* XMTableViewController.m */; };
 		2EBA6BA71E715A2A00FAD879 /* XMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA6B9D1E715A2A00FAD879 /* XMViewController.m */; };
 		2EBA6BA81E715A2A00FAD879 /* XMViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA6B9F1E715A2A00FAD879 /* XMViewController2.m */; };
 		2EBA6BA91E715A2A00FAD879 /* XMViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA6BA11E715A2A00FAD879 /* XMViewController3.m */; };
 		2EBA6BAA1E715A2A00FAD879 /* XMViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA6BA31E715A2A00FAD879 /* XMViewController4.m */; };
 		2EBA6BAB1E715A2A00FAD879 /* XMViewController5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA6BA51E715A2A00FAD879 /* XMViewController5.m */; };
+		B5F468761F4982CB008A5D42 /* NSCalendar+Component.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F468751F4982CB008A5D42 /* NSCalendar+Component.m */; };
 		B5F6CB6A1F4813AE00181110 /* XMDateShowingType.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB691F4813AE00181110 /* XMDateShowingType.m */; };
 		B5F6CB6D1F48142E00181110 /* XMYMDHMShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB6C1F48142E00181110 /* XMYMDHMShow.m */; };
 		B5F6CB701F48146E00181110 /* XMYMDHMSShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB6F1F48146E00181110 /* XMYMDHMSShow.m */; };
@@ -32,6 +30,10 @@
 		B5F6CB761F4814BD00181110 /* XMYMDShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB751F4814BD00181110 /* XMYMDShow.m */; };
 		B5F6CB791F4814DB00181110 /* XMMDHMShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB781F4814DB00181110 /* XMMDHMShow.m */; };
 		B5F6CB7C1F4814FC00181110 /* XMDHMShow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB7B1F4814FC00181110 /* XMDHMShow.m */; };
+		B5F6CB811F49639B00181110 /* XMDateAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB801F49639B00181110 /* XMDateAdapter.m */; };
+		B5F6CB891F4964FF00181110 /* UIButton+XMEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB841F4964FF00181110 /* UIButton+XMEvent.m */; };
+		B5F6CB8A1F4964FF00181110 /* UIView+XMFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB861F4964FF00181110 /* UIView+XMFrame.m */; };
+		B5F6CB8B1F4964FF00181110 /* XMPickerTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F6CB881F4964FF00181110 /* XMPickerTopBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,14 +70,8 @@
 		2E94CE6B1E71592F00090A52 /* XMDatePickerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XMDatePickerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E94CE6F1E71592F00090A52 /* XMDatePickerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMDatePickerDemoUITests.m; sourceTree = "<group>"; };
 		2E94CE711E71592F00090A52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E94CE7E1E71595600090A52 /* UIButton+XMEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+XMEvent.h"; sourceTree = "<group>"; };
-		2E94CE7F1E71595600090A52 /* UIButton+XMEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+XMEvent.m"; sourceTree = "<group>"; };
-		2E94CE801E71595600090A52 /* UIView+XMFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XMFrame.h"; sourceTree = "<group>"; };
-		2E94CE811E71595600090A52 /* UIView+XMFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XMFrame.m"; sourceTree = "<group>"; };
 		2E94CE821E71595600090A52 /* XMDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMDatePicker.h; sourceTree = "<group>"; };
 		2E94CE831E71595600090A52 /* XMDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMDatePicker.m; sourceTree = "<group>"; };
-		2E94CE841E71595600090A52 /* XMPickerTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPickerTopBar.h; sourceTree = "<group>"; };
-		2E94CE851E71595600090A52 /* XMPickerTopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPickerTopBar.m; sourceTree = "<group>"; };
 		2EBA6B9A1E715A2A00FAD879 /* XMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMTableViewController.h; sourceTree = "<group>"; };
 		2EBA6B9B1E715A2A00FAD879 /* XMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMTableViewController.m; sourceTree = "<group>"; };
 		2EBA6B9C1E715A2A00FAD879 /* XMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMViewController.h; sourceTree = "<group>"; };
@@ -88,21 +84,32 @@
 		2EBA6BA31E715A2A00FAD879 /* XMViewController4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMViewController4.m; sourceTree = "<group>"; };
 		2EBA6BA41E715A2A00FAD879 /* XMViewController5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMViewController5.h; sourceTree = "<group>"; };
 		2EBA6BA51E715A2A00FAD879 /* XMViewController5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMViewController5.m; sourceTree = "<group>"; };
-		B5F6CB681F4813AE00181110 /* XMDateShowingType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMDateShowingType.h; path = ../XMDateShowingType.h; sourceTree = "<group>"; };
-		B5F6CB691F4813AE00181110 /* XMDateShowingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMDateShowingType.m; path = ../XMDateShowingType.m; sourceTree = "<group>"; };
-		B5F6CB6B1F48142E00181110 /* XMYMDHMShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMYMDHMShow.h; path = ../XMYMDHMShow.h; sourceTree = "<group>"; };
-		B5F6CB6C1F48142E00181110 /* XMYMDHMShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMYMDHMShow.m; path = ../XMYMDHMShow.m; sourceTree = "<group>"; };
-		B5F6CB6E1F48146E00181110 /* XMYMDHMSShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMYMDHMSShow.h; path = ../XMYMDHMSShow.h; sourceTree = "<group>"; };
-		B5F6CB6F1F48146E00181110 /* XMYMDHMSShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMYMDHMSShow.m; path = ../XMYMDHMSShow.m; sourceTree = "<group>"; };
-		B5F6CB711F48149100181110 /* XMYMDHShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMYMDHShow.h; path = ../XMYMDHShow.h; sourceTree = "<group>"; };
-		B5F6CB721F48149100181110 /* XMYMDHShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMYMDHShow.m; path = ../XMYMDHShow.m; sourceTree = "<group>"; };
-		B5F6CB741F4814BD00181110 /* XMYMDShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMYMDShow.h; path = ../XMYMDShow.h; sourceTree = "<group>"; };
-		B5F6CB751F4814BD00181110 /* XMYMDShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMYMDShow.m; path = ../XMYMDShow.m; sourceTree = "<group>"; };
-		B5F6CB771F4814DB00181110 /* XMMDHMShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMMDHMShow.h; path = ../XMMDHMShow.h; sourceTree = "<group>"; };
-		B5F6CB781F4814DB00181110 /* XMMDHMShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMDHMShow.m; path = ../XMMDHMShow.m; sourceTree = "<group>"; };
-		B5F6CB7A1F4814FC00181110 /* XMDHMShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMDHMShow.h; path = ../XMDHMShow.h; sourceTree = "<group>"; };
-		B5F6CB7B1F4814FC00181110 /* XMDHMShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMDHMShow.m; path = ../XMDHMShow.m; sourceTree = "<group>"; };
-		B5F6CB7D1F49169500181110 /* XMDateEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMDateEnum.h; sourceTree = "<group>"; };
+		B5F468741F4982CB008A5D42 /* NSCalendar+Component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+Component.h"; sourceTree = "<group>"; };
+		B5F468751F4982CB008A5D42 /* NSCalendar+Component.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+Component.m"; sourceTree = "<group>"; };
+		B5F6CB681F4813AE00181110 /* XMDateShowingType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMDateShowingType.h; sourceTree = "<group>"; };
+		B5F6CB691F4813AE00181110 /* XMDateShowingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMDateShowingType.m; sourceTree = "<group>"; };
+		B5F6CB6B1F48142E00181110 /* XMYMDHMShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMYMDHMShow.h; sourceTree = "<group>"; };
+		B5F6CB6C1F48142E00181110 /* XMYMDHMShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMYMDHMShow.m; sourceTree = "<group>"; };
+		B5F6CB6E1F48146E00181110 /* XMYMDHMSShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMYMDHMSShow.h; sourceTree = "<group>"; };
+		B5F6CB6F1F48146E00181110 /* XMYMDHMSShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMYMDHMSShow.m; sourceTree = "<group>"; };
+		B5F6CB711F48149100181110 /* XMYMDHShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMYMDHShow.h; sourceTree = "<group>"; };
+		B5F6CB721F48149100181110 /* XMYMDHShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMYMDHShow.m; sourceTree = "<group>"; };
+		B5F6CB741F4814BD00181110 /* XMYMDShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMYMDShow.h; sourceTree = "<group>"; };
+		B5F6CB751F4814BD00181110 /* XMYMDShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMYMDShow.m; sourceTree = "<group>"; };
+		B5F6CB771F4814DB00181110 /* XMMDHMShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMDHMShow.h; sourceTree = "<group>"; };
+		B5F6CB781F4814DB00181110 /* XMMDHMShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMDHMShow.m; sourceTree = "<group>"; };
+		B5F6CB7A1F4814FC00181110 /* XMDHMShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMDHMShow.h; sourceTree = "<group>"; };
+		B5F6CB7B1F4814FC00181110 /* XMDHMShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMDHMShow.m; sourceTree = "<group>"; };
+		B5F6CB7F1F49639B00181110 /* XMDateAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMDateAdapter.h; sourceTree = "<group>"; };
+		B5F6CB801F49639B00181110 /* XMDateAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMDateAdapter.m; sourceTree = "<group>"; };
+		B5F6CB831F4964FF00181110 /* UIButton+XMEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+XMEvent.h"; sourceTree = "<group>"; };
+		B5F6CB841F4964FF00181110 /* UIButton+XMEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+XMEvent.m"; sourceTree = "<group>"; };
+		B5F6CB851F4964FF00181110 /* UIView+XMFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XMFrame.h"; sourceTree = "<group>"; };
+		B5F6CB861F4964FF00181110 /* UIView+XMFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XMFrame.m"; sourceTree = "<group>"; };
+		B5F6CB871F4964FF00181110 /* XMPickerTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPickerTopBar.h; sourceTree = "<group>"; };
+		B5F6CB881F4964FF00181110 /* XMPickerTopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPickerTopBar.m; sourceTree = "<group>"; };
+		B5F6CB8C1F49651A00181110 /* XMDateEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XMDateEnum.h; path = ../../XMDateEnum.h; sourceTree = "<group>"; };
+		B5F6CB8D1F49654100181110 /* XMDateEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMDateEnum.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,15 +216,14 @@
 			isa = PBXGroup;
 			children = (
 				B5F6CB7E1F493E1200181110 /* DateModel */,
-				B5F6CB7D1F49169500181110 /* XMDateEnum.h */,
+				B5F6CB821F4964FF00181110 /* XMView */,
 				2E94CE821E71595600090A52 /* XMDatePicker.h */,
 				2E94CE831E71595600090A52 /* XMDatePicker.m */,
-				2E94CE7E1E71595600090A52 /* UIButton+XMEvent.h */,
-				2E94CE7F1E71595600090A52 /* UIButton+XMEvent.m */,
-				2E94CE801E71595600090A52 /* UIView+XMFrame.h */,
-				2E94CE811E71595600090A52 /* UIView+XMFrame.m */,
-				2E94CE841E71595600090A52 /* XMPickerTopBar.h */,
-				2E94CE851E71595600090A52 /* XMPickerTopBar.m */,
+				B5F6CB7F1F49639B00181110 /* XMDateAdapter.h */,
+				B5F6CB801F49639B00181110 /* XMDateAdapter.m */,
+				B5F6CB8D1F49654100181110 /* XMDateEnum.h */,
+				B5F468741F4982CB008A5D42 /* NSCalendar+Component.h */,
+				B5F468751F4982CB008A5D42 /* NSCalendar+Component.m */,
 			);
 			path = XMDatePicker;
 			sourceTree = "<group>";
@@ -241,6 +247,20 @@
 				B5F6CB7B1F4814FC00181110 /* XMDHMShow.m */,
 			);
 			path = DateModel;
+			sourceTree = "<group>";
+		};
+		B5F6CB821F4964FF00181110 /* XMView */ = {
+			isa = PBXGroup;
+			children = (
+				B5F6CB8C1F49651A00181110 /* XMDateEnum.h */,
+				B5F6CB831F4964FF00181110 /* UIButton+XMEvent.h */,
+				B5F6CB841F4964FF00181110 /* UIButton+XMEvent.m */,
+				B5F6CB851F4964FF00181110 /* UIView+XMFrame.h */,
+				B5F6CB861F4964FF00181110 /* UIView+XMFrame.m */,
+				B5F6CB871F4964FF00181110 /* XMPickerTopBar.h */,
+				B5F6CB881F4964FF00181110 /* XMPickerTopBar.m */,
+			);
+			path = XMView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,24 +393,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E94CE891E71595600090A52 /* UIView+XMFrame.m in Sources */,
 				B5F6CB7C1F4814FC00181110 /* XMDHMShow.m in Sources */,
 				B5F6CB701F48146E00181110 /* XMYMDHMSShow.m in Sources */,
-				2E94CE881E71595600090A52 /* UIButton+XMEvent.m in Sources */,
 				B5F6CB731F48149100181110 /* XMYMDHShow.m in Sources */,
 				2EBA6BA91E715A2A00FAD879 /* XMViewController3.m in Sources */,
+				B5F6CB8B1F4964FF00181110 /* XMPickerTopBar.m in Sources */,
 				2E94CE4F1E71592F00090A52 /* AppDelegate.m in Sources */,
 				B5F6CB761F4814BD00181110 /* XMYMDShow.m in Sources */,
 				2E815F9A1E715FFF002ED799 /* XMViewController1.m in Sources */,
-				2E94CE8B1E71595600090A52 /* XMPickerTopBar.m in Sources */,
 				2EBA6BA71E715A2A00FAD879 /* XMViewController.m in Sources */,
 				B5F6CB791F4814DB00181110 /* XMMDHMShow.m in Sources */,
+				B5F468761F4982CB008A5D42 /* NSCalendar+Component.m in Sources */,
 				2E94CE8A1E71595600090A52 /* XMDatePicker.m in Sources */,
 				B5F6CB6A1F4813AE00181110 /* XMDateShowingType.m in Sources */,
 				2EBA6BA61E715A2A00FAD879 /* XMTableViewController.m in Sources */,
+				B5F6CB811F49639B00181110 /* XMDateAdapter.m in Sources */,
 				B5F6CB6D1F48142E00181110 /* XMYMDHMShow.m in Sources */,
 				2EBA6BA81E715A2A00FAD879 /* XMViewController2.m in Sources */,
+				B5F6CB8A1F4964FF00181110 /* UIView+XMFrame.m in Sources */,
 				2EBA6BAB1E715A2A00FAD879 /* XMViewController5.m in Sources */,
+				B5F6CB891F4964FF00181110 /* UIButton+XMEvent.m in Sources */,
 				2EBA6BAA1E715A2A00FAD879 /* XMViewController4.m in Sources */,
 				2E94CE4C1E71592F00090A52 /* main.m in Sources */,
 			);

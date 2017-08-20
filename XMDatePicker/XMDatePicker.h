@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "XMDateEnum.h"
-
 typedef enum{
     PickerViewTypeLongSperator = 1,//Default
     PickerViewTypeDynamicSperator,
@@ -78,6 +77,12 @@ typedef enum{
 
 @property(nonatomic, assign)CGFloat topMargin;
 @property(nonatomic, assign)CGFloat bottomMargin;
+
+//最大时间
+@property (nullable, nonatomic, strong) NSDate *maximumDate;
+
+//最小时间
+@property (nullable, nonatomic, strong) NSDate *minimumDate;
 
 - (void)showPickerView;
 @end

@@ -46,6 +46,7 @@
 }
 
 - (NSString *)selectedTitleForRow:(NSInteger)row inComponent:(NSInteger)component {
+    [super selectedTitleForRow:row inComponent:component];
     if (component == 0) {//days
         self.currentDay = [self.days[row] intValue];
     }else if (component == 1) {//hours
@@ -57,6 +58,7 @@
                             self.currentDay,
                             self.currentHour,
                             self.currentMinite];
+
     return dateString;
 }
 

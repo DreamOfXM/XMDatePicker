@@ -21,8 +21,14 @@
     [super viewDidLoad];
     self.titleLabel.text = @"click me!";
     
-    //time formate
+    //time formate 此时会重新创建一个新的日期模型，那么原来的日期模型的设置就需要重新设置，如时间单位“年”、@“月”、@“日”
     self.datePicker.dateShowType = DateShowingTypeYMDHM;
+    self.datePicker.maximumDate = [NSDate date];
+    NSString *time = @"2015-11-02";
+    NSDateFormatter *formate = [[NSDateFormatter alloc]init];
+    formate.dateFormat = @"yyyy-MM-dd";
+    NSDate *date = [formate dateFromString:time];
+    self.datePicker.minimumDate = date;
 
     //seperate line type
     self.datePicker.pickerViewType = PickerViewTypeDynamicSperator;
@@ -36,6 +42,9 @@
     
     self.datePicker.selectedLabelColor = [UIColor yellowColor];
     self.datePicker.otherLabelColor = [UIColor blueColor];
+    
+    self.datePicker.yearUnit = @"年";
+    self.datePicker.monthUnit = @"月";
     
     //custom seperator width
     self.datePicker.seperatorWidth = 60;

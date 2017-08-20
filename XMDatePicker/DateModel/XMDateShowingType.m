@@ -22,7 +22,7 @@
 #define IsThirtyDays(month) (month == 4 || month == 6 ||month == 9 || month == 11)
 
 #import "XMDateShowingType.h"
-#import "XMDateEnum.h"
+
 
 @interface XMDateShowingType()
 @property(nonatomic, strong)NSMutableArray *years;
@@ -59,19 +59,22 @@
             [_years addObject:[NSString stringWithFormat:@"%.4d%@",i,self.yearUnit?self.yearUnit:@""]];
         }
         
-        NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:[NSDate date]];
+        NSDateComponents *components = [NSCalendar componetsFromDate:[NSDate date]];
         _currentYear = (int)components.year;
         _currentMonth = (int)components.month;
         _currentDay =  (int)components.day;
         _currentHour = (int)components.hour;
         _currentMinite = (int)components.minute;
         
-        _yearIndex = [self.years indexOfObject:[NSString stringWithFormat:@"%.4d%@",self.currentYear,self.yearUnit?self.yearUnit:@""]];
-        _monthIndex = [self.months indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentMonth,self.monthUnit?self.monthUnit:@""]];
-        _dayIndex = [[self caculateDaysFromMonth:self.currentMonth year:self.currentYear] indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentDay,self.dayUnit?self.dayUnit:@""]];
-        _hourIndex = [self.hours indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentHour,self.hourUnit?self.hourUnit:@""]];
-        _minteIndex = [self.minites indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentMinite,self.miniteUnit?self.miniteUnit:@""]];
+        _yearIndex = [self yearIndexOfYear:self.currentYear];
+        _monthIndex = [self monthIndxOfMonth:self.currentMonth];
+        _dayIndex = [self dayIndexOfDay:self.currentDay];
+        _hourIndex = [self hourIndexOfHour:self.currentHour];
+        _minteIndex = [self miniteIndexOfMinite:self.currentMinite];
+//        _monthIndex = [self.months indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentMonth,self.monthUnit?self.monthUnit:@""]];
+//        _dayIndex = [[self caculateDaysFromMonth:self.currentMonth year:self.currentYear] indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentDay,self.dayUnit?self.dayUnit:@""]];
+//        _hourIndex = [self.hours indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentHour,self.hourUnit?self.hourUnit:@""]];
+//        _minteIndex = [self.minites indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentMinite,self.miniteUnit?self.miniteUnit:@""]];
         _secondIndex = [self.seconds indexOfObject:[NSString stringWithFormat:@"%.2d%@",self.currentSecond,self.secondUnit?self.secondUnit:@""]];
     }
     return self;
@@ -152,6 +155,8 @@
 
 #pragma mark - SetMethods
 - (void)setYearUnit:(NSString *)yearUnit {
+    NSLog(@"yearUnit ====== %@",yearUnit);
+    _yearUnit = yearUnit;
     NSInteger count = self.years.count;
     NSMutableArray *temArray = [[NSMutableArray alloc]init];
     for (NSInteger i = 0; i<count; i++) {
@@ -166,6 +171,7 @@
 
 - (void)setMonthUnit:(NSString *)monthUnit {
     _monthUnit = monthUnit;
+    NSLog(@"_monthUnit ===== %@ === class === %@ ",_monthUnit,self);
 }
 
 - (void)setDayUnit:(NSString *)dayUnit {
@@ -183,6 +189,31 @@
 - (void)setSecondUnit:(NSString *)secondUnit {
     _secondUnit = secondUnit;
 }
+
+- (void)setFromYear:(int)fromYear {
+    _fromYear = fromYear;
+    [self.years removeAllObjects];
+    
+    if (self.toYear) {
+        for (int i = fromYear; i<= self.toYear; i++) {
+            [_years addObject:[NSString stringWithFormat:@"%.4d",i]];
+        }
+    }
+}
+
+- (void)setToYear:(int)toYear {
+    [self.years removeAllObjects];
+    if (self.fromYear) {
+        for (int i = self.fromYear; i<= toYear; i++) {
+            [_years addObject:[NSString stringWithFormat:@"%.4d",i]];
+        }
+    }else {
+        for (int i = 1970; i<= toYear; i++) {
+            [_years addObject:[NSString stringWithFormat:@".4%d",i]];
+        }
+    }
+}
+
 
 #pragma mark - Layzes
 - (NSMutableArray *)months {
@@ -219,6 +250,34 @@
     return [self p_getCommonArray:_seconds
                      elementCount:SecondsOfEachMinite
                              uint:self.secondUnit];
+}
+
+
+- (NSInteger)yearIndexOfYear:(int)year {
+    
+    return  [self.years indexOfObject:[NSString stringWithFormat:@"%.4d%@",year,self.yearUnit?self.yearUnit:@""]];
+}
+
+- (NSInteger)monthIndxOfMonth:(int)month {
+    return [self.months indexOfObject:[NSString stringWithFormat:@"%.2d%@",month,self.monthUnit?self.monthUnit:@""]];
+}
+
+- (NSInteger)dayIndexOfDay:(int)day {
+     return  [[self caculateDaysFromMonth:self.currentMonth year:self.currentYear] indexOfObject:[NSString stringWithFormat:@"%.2d%@",day,self.dayUnit?self.dayUnit:@""]];
+}
+
+- (NSInteger)hourIndexOfHour:(int)hour {
+   return [self.hours indexOfObject:[NSString stringWithFormat:@"%.2d%@",hour,self.hourUnit?self.hourUnit:@""]];
+}
+
+- (NSInteger)miniteIndexOfMinite:(int)minite {
+     return  [self.minites indexOfObject:[NSString stringWithFormat:@"%.2d%@",minite,self.miniteUnit?self.miniteUnit:@""]];
+}
+
+
+
+- (void)dealloc {
+    NSLog(@"====dealloc==== %@ ",self);
 }
 
 

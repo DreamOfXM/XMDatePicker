@@ -8,7 +8,6 @@
 
 #ifndef XMDateEnum_h
 #define XMDateEnum_h
-
 typedef NS_ENUM(NSInteger,DateShowingType) {
     DateShowingTypeYMDHM = 1,//year、month、day、hour and minite
     DateShowingTypeYMDHMS,//year、month、day、hour and minite、second

@@ -19,6 +19,7 @@
         self.titleLabel.text = @"click me! Default seperate line type";
     
     self.datePicker.dateShowType = DateShowingTypeYMD;
+    self.datePicker.maximumDate = [NSDate date];
     self.datePicker.pickerViewType = PickerViewTypeLongSperator;
     self.datePicker.seperateLineColor = [UIColor blueColor];
     

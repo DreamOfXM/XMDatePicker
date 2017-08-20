@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSCalendar+Component.h"
 
 #define kDefaultComponentNum 5
 #define kDefaultTitle @"~……~"
@@ -22,6 +23,9 @@
 @protocol XMDateShowingTypeDelegate <NSObject>
 @required
 - (void)selectedRow:(NSInteger)row inComponent:(NSInteger)component;
+
+- (void)scrollToMaxYear;
+- (void)scrollToMinDay;
 
 @end
 
@@ -53,6 +57,26 @@
 @property (nonatomic, assign,readonly)NSInteger minteIndex;
 @property (nonatomic, assign,readonly)NSInteger secondIndex;
 
+@property(nonatomic, copy,readonly)NSString *yearUnit;
+@property(nonatomic, copy,readonly)NSString *monthUnit;
+@property(nonatomic, copy,readonly)NSString *dayUnit;
+@property(nonatomic, copy,readonly)NSString *hourUnit;
+@property(nonatomic, copy,readonly)NSString *miniteUnit;
+@property(nonatomic, copy,readonly)NSString *secondUnit;
+
+
+/** start time.It is 1970 default if is not setted*/
+@property(nonatomic, assign)int fromYear;
+
+/** end time*/
+@property(nonatomic, assign)int toYear;
+
+//最大时间
+@property (nullable, nonatomic, strong) NSDate *maximumDate;
+
+//最小时间
+@property (nullable, nonatomic, strong) NSDate *minimumDate;
+
 
 
 - (void)setYearUnit:(NSString *)yearUnit;
@@ -79,5 +103,15 @@
 - (void)scrollToDefaultDate;
 
 - (NSString *)currentDateString;
+
+
+- (NSInteger)yearIndexOfYear:(int)year;
+- (NSInteger)monthIndxOfMonth:(int)month;
+- (NSInteger)dayIndexOfDay:(int)day;
+- (NSInteger)hourIndexOfHour:(int)hour;
+- (NSInteger)miniteIndexOfMinite:(int)minite;
+
+
+
 
 @end

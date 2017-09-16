@@ -156,6 +156,9 @@
     if (![self.delegate respondsToSelector:@selector(pickerView:didClickOkButtonWithDateString:)]) {
         [self dismissPickerView];
     }else {
+        if ([self.dateString isEqualToString:@""] || !self.dateString) {
+            self.dateString = [self p_defaultDateStr];
+        }
         [self.delegate pickerView:self didClickOkButtonWithDateString:self.dateString];
     }
 }
@@ -177,10 +180,12 @@
     self.dateShowType = DateShowingTypeYMDHM;
     self.seperateLineColor = [UIColor redColor];
     self.topMargin = 40;
-
 //    self.bottomMargin = 20;
 }
 
+- (NSString *)p_defaultDateStr {
+    return [self.dateShow currentDateString];
+}
 
 - (void)p_scrollToDefaultLocation {
     [self.dateShow scrollToDefaultDate];

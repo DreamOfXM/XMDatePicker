@@ -92,7 +92,7 @@
             [array addObject:[NSString stringWithFormat:@"%.2d%@",i,unit?unit:@""]];
         }
     }else {
-        for (int i = 0; i<=count; i++) {
+        for (int i = 0; i<count; i++) {
             [array addObject:[NSString stringWithFormat:@"%.2d%@",i,unit?unit:@""]];
         }
     }

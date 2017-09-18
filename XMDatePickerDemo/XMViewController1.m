@@ -54,6 +54,7 @@
 #pragma mark
 - (void)pickerView:(XMDatePicker *)pickerView didSelectedDateString:(NSString *)dateString {
     self.dateLabel.text = dateString;
+    NSLog(@"dateString == %@",dateString);
 }
 
 

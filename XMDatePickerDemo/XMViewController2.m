@@ -41,6 +41,7 @@
 #pragma mark - Delegate
 - (void)pickerView:(XMDatePicker *)pickerView didClickOkButtonWithDateString:(NSString *)dateString {
     self.dateLabel.text = dateString;
+    NSLog(@"dateString == %@",dateString);
     
 }
 @end

@@ -50,10 +50,10 @@ typedef enum{
 @property(nonatomic, assign)CGFloat seperatorWidth;
 
 /** start time.It is 1970 default if is not setted*/
-@property(nonatomic, assign)int fromYear;
+@property(nonatomic, assign)int fromYear __attribute__((deprecated("请用maximumDate替换,否则程序可能会崩溃")));
 
 /** end time*/
-@property(nonatomic, assign)int toYear;
+@property(nonatomic, assign)int toYear __attribute__((deprecated("请用minimumDate替换，否则程序可能会崩溃")));
 
 @property(nonatomic, weak)id<XMDatePickerDelegate>delegate;
 @property(nonatomic, assign)CGFloat componentWidth;
@@ -78,10 +78,10 @@ typedef enum{
 @property(nonatomic, assign)CGFloat topMargin;
 @property(nonatomic, assign)CGFloat bottomMargin;
 
-//最大时间
+/** 最大时间*/
 @property (nullable, nonatomic, strong) NSDate *maximumDate;
 
-//最小时间
+/** 最小时间*/
 @property (nullable, nonatomic, strong) NSDate *minimumDate;
 
 - (void)showPickerView;
